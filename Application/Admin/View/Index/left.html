@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>
+        {$Think.lang.backoffice_title}
+    </title>
+    <!-- Bootstrap -->
+    <load href="__PUBLIC__/{:UIKIT}/css/uikit.almost-flat.min.css" />
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media
+        queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file://
+        -->
+    <!--[if lt IE 9]>
+            <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js">
+            </script>
+            <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js">
+            </script>
+        <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <load href="__PUBLIC__/Common/js/jquery-1.11.2.min.js" />
+    <!-- Include all compiled plugins (below), or include individual files
+        as needed -->
+    <load href="__PUBLIC__/{:UIKIT}/js/uikit.min.js" />
+    <style>
+    .s-bg {
+        max-width: 100%;
+        background: #333 none repeat scroll 0% 0%;
+        overflow-y: auto;
+    }
+    </style>
+
+    <body>
+        <div class="s-bg">
+            <ul class="uk-nav uk-nav-offcanvas  uk-nav-parent-icon " data-uk-nav>
+                <li>
+                    <a target="main" href="__MODULE__/Index/right">
+                            {$Think.lang.home}
+                        </a>
+                </li>
+                <li class="uk-parent">
+                    <a href="#">
+                       {$Think.lang.admin_module}
+                    </a>
+                    <ul class="uk-nav-sub">
+                        <li>
+                            <a target="main" href="__MODULE__/Member/index">
+                                    {$Think.lang.admin_list}
+                                </a>
+                        </li>
+                        <li>
+                            <a target="main" href="__MODULE__/Group/index">
+                                    {$Think.lang.admin_group}
+                                </a>
+                        </li>
+                        <li>
+                            <a target="main" href="__MODULE__/Access/index">
+                                    {$Think.lang.access_list}
+                                </a>
+                        </li>
+                        <li>
+                            <a target="main" href="__MODULE__/Advance/index">
+                                    {$Think.lang.senior_operation}
+                                </a>
+                        </li>
+                        <li>
+                            <a target="main" href="__MODULE__/Weblog/index">
+                                    {$Think.lang.admin_log}
+                                </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </body>
+
+</html>
