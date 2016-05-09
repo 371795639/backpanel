@@ -1,7 +1,4 @@
 <layout name="layout" />
-<p>
-    <button type="button" onclick="bulkdel('__CONTROLLER__/batchDelete')" class="uk-button uk-button-default">{$Think.lang.batch_delete}</button>
-</p>
 <form class="uk-form">
     <div class="uk-grid">
         <div class="uk-width-1-4">{$Think.lang.account}:
@@ -15,32 +12,29 @@
         <button type="submit" class="uk-button uk-button-danger">{$Think.lang.search}</button>
     </p>
 </form>
-<div class="uk-alert uk-alert-warning">{$Think.lang.weblog_notice}</div>
 {$page}
 <div class="uk-overflow-container">
     <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
         <thead>
-            <th>
-                <input id="checkall" type="checkbox" />
-            </th>
             <th>#</th>
-            <th>{$Think.lang.account}</th>
-            <th>{$Think.lang.action}</th>
+            <th>文章标题</th>
+            <th>分类</th>
+            <th>是否可用</th>
+            <th>排序</th>
             <th>{$Think.lang.add_time}</th>
             <th>--</th>
         </thead>
         <tbody>
             <volist name="list" id="vo">
                 <tr>
+                    <td><a href="__CONTROLLER__/details/{$vo.doc_id}">{$vo.doc_id}</a></td>
+                    <td>{$vo.doc_title}</td>
+                    <td>{$vo.cat_name}</td>
+                    <td>{$vo.doc_status|displayIcon}</td>
+                    <td>{$vo.doc_sort}</td>
+                    <td>{$vo.doc_time}</td>
                     <td>
-                        <input name="check_child" value="{$vo.log_id}" type="checkbox" />
-                    </td>
-                    <td><a href="__CONTROLLER__/details/{$vo.log_id}">{$vo.log_id}</a></td>
-                    <td>{$vo.log_admin}</td>
-                    <td>{$vo.log_action}</td>
-                    <td>{$vo.log_time}</td>
-                    <td>
-                        <a href="javascript:void(0)" class="uk-icon-trash uk-icon-hover" onclick="confirmDelete('__CONTROLLER__/deleteHandle/{$vo.log_id}')">
+                        <a href="javascript:void(0)" class="uk-icon-trash uk-icon-hover" onclick="confirmDelete('__CONTROLLER__/deleteHandle/{$vo.doc_id}')">
                         </a>
                     </td>
                 </tr>
