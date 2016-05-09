@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: 2016-05-06 10:41:29
+-- Generation Time: 2016-05-09 11:04:43
 -- 服务器版本： 5.5.42
 -- PHP Version: 5.6.10
 
@@ -3652,6 +3652,30 @@ INSERT INTO `ips_autoperform` (`id`, `name`, `remark`, `isactive`, `email`, `aut
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `ips_category`
+--
+
+CREATE TABLE `ips_category` (
+  `cat_id` int(11) NOT NULL,
+  `cat_name` varchar(50) NOT NULL,
+  `cat_status` tinyint(1) NOT NULL DEFAULT '1',
+  `cat_type` tinyint(4) NOT NULL DEFAULT '1',
+  `cat_remark` varchar(300) NOT NULL,
+  `cat_index` varchar(50) NOT NULL DEFAULT 'index',
+  `cat_details` varchar(50) NOT NULL DEFAULT 'details',
+  `cat_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='文章分类表';
+
+--
+-- 转存表中的数据 `ips_category`
+--
+
+INSERT INTO `ips_category` (`cat_id`, `cat_name`, `cat_status`, `cat_type`, `cat_remark`, `cat_index`, `cat_details`, `cat_time`) VALUES
+(1, '测试', 1, 1, '测试', 'index', 'details', '2016-05-09 08:48:17');
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `ips_config`
 --
 
@@ -3948,6 +3972,33 @@ INSERT INTO `ips_countries` (`countries_id`, `countries_name`, `countries_iso_co
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `ips_document`
+--
+
+CREATE TABLE `ips_document` (
+  `doc_id` int(11) NOT NULL,
+  `doc_title` varchar(200) NOT NULL,
+  `doc_cat` int(11) NOT NULL,
+  `doc_desc` varchar(300) NOT NULL,
+  `doc_keyword` varchar(50) NOT NULL,
+  `doc_content` text NOT NULL,
+  `doc_unique` varchar(20) NOT NULL,
+  `doc_status` tinyint(1) NOT NULL DEFAULT '1',
+  `doc_dir` varchar(50) NOT NULL,
+  `doc_img` varchar(50) NOT NULL,
+  `doc_author` varchar(50) NOT NULL,
+  `doc_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `doc_source` varchar(50) NOT NULL,
+  `doc_hit` int(11) NOT NULL,
+  `doc_label` int(11) NOT NULL,
+  `doc_tpl` varchar(20) NOT NULL,
+  `doc_sort` int(11) NOT NULL,
+  `doc_update_time` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `ips_member`
 --
 
@@ -3976,7 +4027,7 @@ CREATE TABLE `ips_member` (
 --
 
 INSERT INTO `ips_member` (`id`, `account`, `nickname`, `password`, `bind_account`, `last_login_time`, `last_login_ip`, `login_count`, `verify`, `email`, `remark`, `create_time`, `update_time`, `status`, `type_id`, `info`, `salt`) VALUES
-(1, 'admin', '超级管理员', 'e10adc3949ba59abbe56e057f20f883e', '', '2016-05-06 15:28:27', '127.0.0.1', 215, '', '383542899@qq.com', 'test', '2013-10-15 03:48:33', '2013-10-17 11:42:28', 1, '', '', ''),
+(1, 'admin', '超级管理员', 'e10adc3949ba59abbe56e057f20f883e', '', '2016-05-09 15:08:43', '127.0.0.1', 216, '', '383542899@qq.com', 'test', '2013-10-15 03:48:33', '2013-10-17 11:42:28', 1, '', '', ''),
 (2, 'hello', '测试管理员', '48a0bbc767ef81d1daeb6ea5d4dedbca', '', '2016-05-06 15:27:36', '127.0.0.1', 1, '', '245995445@qq.com', '1212', '2013-10-17 06:45:49', '2016-05-06 15:24:53', 1, '', '', 'FqlmfEJGbzGevrCkbMBL'),
 (3, 'admin121', 'admin', '0192023a7bbd73250516f069df18b500', '', '', '', 0, '', '3835428991@qq.com', '2332432', '2014-01-14 07:26:12', '2014-01-14 15:28:50', 1, '', '', '');
 
@@ -3997,7 +4048,7 @@ CREATE TABLE `ips_session` (
 --
 
 INSERT INTO `ips_session` (`session_id`, `session_expire`, `session_data`) VALUES
-('698ce1af0e93da85eec3df77d067e769', 1462541601, 0x7569647c733a313a2231223b);
+('698ce1af0e93da85eec3df77d067e769', 1462801771, 0x64326439373763353834343432373164396337383031383765393366383065357c613a323a7b733a31313a227665726966795f636f6465223b733a33323a223561656165613861363137303235616233306434353064663532386637663465223b733a31313a227665726966795f74696d65223b693a313436323737363236303b7d7569647c733a313a2231223b);
 
 -- --------------------------------------------------------
 
@@ -4011,7 +4062,7 @@ CREATE TABLE `ips_weblog` (
   `log_action` varchar(100) NOT NULL,
   `log_sql` varchar(200) NOT NULL,
   `log_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=MyISAM AUTO_INCREMENT=1735 DEFAULT CHARSET=utf8 COMMENT='操作日志'
+) ENGINE=MyISAM AUTO_INCREMENT=1755 DEFAULT CHARSET=utf8 COMMENT='操作日志'
 /*!50100 PARTITION BY RANGE (log_id)
 (PARTITION p0 VALUES LESS THAN (2000000) ENGINE = MyISAM,
  PARTITION p1 VALUES LESS THAN (4000000) ENGINE = MyISAM,
@@ -5732,7 +5783,27 @@ INSERT INTO `ips_weblog` (`log_id`, `log_admin`, `log_action`, `log_sql`, `log_t
 (1731, 'admin', 'Group/assignAccess', 'SELECT * FROM `ips_auth_rule` WHERE `module` = ''管理员组'' ', '2016-05-06 08:31:27'),
 (1732, 'admin', 'Group/assignAccess', 'SELECT * FROM `ips_auth_rule` WHERE `module` = ''管理员组'' ', '2016-05-06 08:33:13'),
 (1733, 'admin', 'Group/assignAccess', 'SELECT * FROM `ips_auth_rule` WHERE `module` = ''管理员组'' ', '2016-05-06 08:33:14'),
-(1734, 'admin', 'Group/assignAccess', 'SELECT * FROM `ips_auth_rule` WHERE `module` = ''管理员组'' ', '2016-05-06 08:33:21');
+(1734, 'admin', 'Group/assignAccess', 'SELECT * FROM `ips_auth_rule` WHERE `module` = ''管理员组'' ', '2016-05-06 08:33:21'),
+(1735, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 07:08:44'),
+(1736, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 07:08:44'),
+(1737, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 07:08:45'),
+(1738, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 07:10:19'),
+(1739, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 07:10:19'),
+(1740, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 07:10:19'),
+(1741, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 07:10:59'),
+(1742, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 07:10:59'),
+(1743, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 07:10:59'),
+(1744, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 07:11:59'),
+(1745, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 07:12:12'),
+(1746, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 07:12:12'),
+(1747, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 07:12:12'),
+(1748, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 07:13:38'),
+(1749, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 07:13:38'),
+(1750, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 07:13:38'),
+(1751, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 07:25:14'),
+(1752, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 07:25:14'),
+(1753, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 07:25:14'),
+(1754, 'admin', 'Category/addHandle', 'INSERT INTO `ips_category` (`cat_name`,`cat_type`,`cat_status`,`cat_index`,`cat_details`,`cat_remark`) VALUES (''测试'',''1'',''1'',''index'',''details'',''测试'')', '2016-05-09 08:48:17');
 
 -- --------------------------------------------------------
 
@@ -6027,6 +6098,13 @@ ALTER TABLE `ips_autoperform`
   ADD UNIQUE KEY `name` (`name`);
 
 --
+-- Indexes for table `ips_category`
+--
+ALTER TABLE `ips_category`
+  ADD PRIMARY KEY (`cat_id`),
+  ADD UNIQUE KEY `cat_name` (`cat_name`);
+
+--
 -- Indexes for table `ips_config`
 --
 ALTER TABLE `ips_config`
@@ -6041,6 +6119,12 @@ ALTER TABLE `ips_countries`
   ADD KEY `idx_address_format_id_zen` (`address_format_id`),
   ADD KEY `idx_iso_2_zen` (`countries_iso_code_2`),
   ADD KEY `idx_iso_3_zen` (`countries_iso_code_3`);
+
+--
+-- Indexes for table `ips_document`
+--
+ALTER TABLE `ips_document`
+  ADD PRIMARY KEY (`doc_id`);
 
 --
 -- Indexes for table `ips_member`
@@ -6095,10 +6179,20 @@ ALTER TABLE `ips_auth_rule`
 ALTER TABLE `ips_autoperform`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
+-- AUTO_INCREMENT for table `ips_category`
+--
+ALTER TABLE `ips_category`
+  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT for table `ips_countries`
 --
 ALTER TABLE `ips_countries`
   MODIFY `countries_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=241;
+--
+-- AUTO_INCREMENT for table `ips_document`
+--
+ALTER TABLE `ips_document`
+  MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `ips_member`
 --
@@ -6108,7 +6202,7 @@ ALTER TABLE `ips_member`
 -- AUTO_INCREMENT for table `ips_weblog`
 --
 ALTER TABLE `ips_weblog`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1735;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1755;
 --
 -- AUTO_INCREMENT for table `ips_zones`
 --

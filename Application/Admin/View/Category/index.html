@@ -1,0 +1,117 @@
+<layout name="layout" />
+<p>
+    <!-- Button trigger modal -->
+    <button type="button" class="uk-button uk-button-success" data-uk-modal="{target:'#myModal',center:true}">
+        {$Think.lang.add_new}
+    </button>
+</p>
+<form class="uk-form">
+    <div class="uk-grid">
+        <div class="uk-width-1-4">分类名:
+            <input type="text" name="log_admin" placeholder="" class="uk-width-1-1">
+        </div>
+        <div class="uk-width-1-4">类型:
+            <select name="cat_type">
+                <option value="">--</option>
+                <volist name=":category_type()" id="vo">
+                    <option value="{$key}">{$vo}</option>
+                </volist>
+            </select>
+        </div>
+    </div>
+    <p>
+        <button type="submit" class="uk-button uk-button-danger">{$Think.lang.search}</button>
+    </p>
+</form>
+{$page}
+<div class="uk-overflow-container">
+    <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
+        <thead>
+            <th>#</th>
+            <th>分类名</th>
+            <th>类型</th>
+            <th>是否可用</th>
+            <th>模板</th>
+            <th>添加时间</th>
+            <th>--</th>
+        </thead>
+        <tbody>
+            <volist name="list" id="vo">
+                <tr>
+                    <td><a href="__CONTROLLER__/details/{$vo.cat_id}">{$vo.cat_id}</a></td>
+                    <td>{$vo.cat_name}</td>
+                    <td>{$vo.cat_type|category_type}</td>
+                    <td>{$vo.cat_status|displayIcon}</td>
+                    <td>{$vo.cat_index}/{$vo.cat_details}</td>
+                    <td>{$vo.cat_time}</td>
+                    <td>
+                        <a href="javascript:void(0)" class="uk-icon-trash uk-icon-hover" onclick="confirmDelete('__CONTROLLER__/deleteHandle/{$vo.cat_id}')">
+                        </a>
+                    </td>
+                </tr>
+            </volist>
+        </tbody>
+    </table>
+</div>
+{$page}
+<div style="clear:both"></div>
+<!-- Modal -->
+<div class="uk-modal" id="myModal">
+    <form id="validate_form" class="uk-form" method="post" action="__CONTROLLER__/addHandle">
+        <div class="uk-modal-dialog">
+            <a class="uk-modal-close uk-close"></a>
+            <div class="uk-modal-header">{$Think.lang.add_new}</div>
+            <table class="uk-table">
+                <tr>
+                    <td width=100>分类名</td>
+                    <td>
+                        <input type="text" name="cat_name" required value="{$cat_name}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>类型
+                    </td>
+                    <td>
+                        <select name="cat_type">
+                            <volist name=":category_type()" id="vo">
+                                <option value="{$key}">{$vo}</option>
+                            </volist>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>是否可用</td>
+                    <td>
+                        <label>
+                            <input type="radio" name="cat_status" checked value="1" />是
+                        </label>
+                        <label>
+                            <input type="radio" name="cat_status" value="0" />否
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>列表模板</td>
+                    <td>
+                        <input type="text" name="cat_index" required value="index" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>详情模板</td>
+                    <td>
+                        <input type="text" name="cat_details" required value="details" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>备注</td>
+                    <td>
+                        <textarea type="text" name="cat_remark" style="height:100px;"></textarea>
+                    </td>
+                </tr>
+            </table>
+            <div class="uk-modal-footer uk-text-right">
+                <button class="uk-button uk-button-danger" type="submit">{$Think.lang.save}</button>
+            </div>
+        </div>
+    </form>
+</div>
