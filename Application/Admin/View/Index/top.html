@@ -81,6 +81,11 @@ function logout() {
         <div class="uk-navbar-flip">
             <ul class="uk-navbar-nav">
                 <li>
+                    <a target="main" href="__MODULE__/Config/index">
+                        <i class="uk-icon-cog"></i>&nbsp;{$Think.lang.config}
+                    </a>
+                </li>
+                <li>
                     <a target="main" href="__MODULE__/DB/index">
                         <i class="uk-icon-bookmark"></i>&nbsp;{$Think.lang.db_backup}
                     </a>
@@ -92,7 +97,7 @@ function logout() {
                 </li>
                 <li><a target="main" href="__MODULE__/Config/phpinfo"><i class="uk-icon-code"></i>&nbsp;PHPINFO</a></li>
                 <li><a href="javascript:void(0)" onclick="javascript:parent.main.location.reload()"><i class="uk-icon-refresh"></i>&nbsp;
-			{$Think.lang.refresh}</a></li>
+            {$Think.lang.refresh}</a></li>
                 <li><a target=_blank href="__APP__"><i class="uk-icon-th"></i>&nbsp;{$Think.lang.front-office}</a></li>
                 <li>
                     <a href="javascript:void(0)" onclick="logout()">
