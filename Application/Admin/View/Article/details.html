@@ -23,17 +23,11 @@
                 <td>
                     <select name="doc_cat" required>
                         <option value="">--</option>
-                        <volist name=":getObjectList('category','cat_type=1')" id="vo">
+                        <volist name=":getObjectList('category','cat_type=2')" id="vo">
                             <option value="{$vo.cat_id}" <eq name="vo.cat_id" value="$doc_cat">selected</eq>>{$vo.cat_name}</option>
                         </volist>
                     </select>
                     * 没有分类的话，可先去分类里创建
-                </td>
-            </tr>
-            <tr>
-                <td>唯一标识(英文)</td>
-                <td>
-                    <input type="text" name="doc_unique" required isEnglish="true" value="{$doc_unique}" />
                 </td>
             </tr>
             <tr>
@@ -81,9 +75,9 @@
                 </td>
             </tr>
             <tr>
-                <td>模板</td>
+                <td>点击数</td>
                 <td>
-                    <input type="text" name="doc_tpl" value="{$doc_tpl}" required />
+                    <input type="number" name="doc_hit" isNumber='true' isNumber="true" required value="{$doc_hit}" />
                 </td>
             </tr>
             <tr>

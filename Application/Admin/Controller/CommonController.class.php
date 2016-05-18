@@ -49,6 +49,23 @@ abstract class CommonController extends BaseController {
 		$this->display();
 	}
 
+	//CMS列表
+	protected function cms_index() {
+		$mist_arr = array('doc_title' => I("doc_title"));
+		$accute_arr = array('doc_cat' => I("doc_cat"));
+		$cookie_arr = array();
+		$con = searchCon($mist_arr, $accute_arr, $cookie_arr);
+
+		$this->model_view ? $oop = D($this->model_view) : $oop = M($this->model);
+		$data = pageInfo($oop, $this->key . " desc", $con, $this->num);
+		$this->assign("list", $data['list']);
+		//dump($con);
+		//echo $oop->_sql();
+		$this->assign("page", $data['show']);
+		$this->assign("main_title", $this->title_index);
+		$this->display();
+	}
+
 	//详情页
 	public function details() {
 		//dump($this->web_config);
@@ -91,6 +108,37 @@ abstract class CommonController extends BaseController {
 
 	}
 
+	//cms保存
+	protected function cms_udpateHandle() {
+		$oop = M($this->model);
+		$oop->create();
+
+		if (!empty($_FILES['file']['tmp_name'])) {
+			$result = parent::uploadfile($exts = array('jpg', 'gif', 'png', 'jpeg'), $thumb = true);
+			if (!$result['status']) {
+				$this->error($result['info']);
+			}
+			$oop->doc_dir = $result['info']['file']['savepath'];
+			$oop->doc_img = $result['info']['file']['savename'];
+		}
+		//dump(I());
+		//dump($result);exit;
+		try {
+
+			if ($oop->save()) {
+				$this->success(L("update_success"));
+			} else {
+				$this->error(L("update_failed"));
+			}
+
+		} catch (\Exception $e) {
+			//dump($e);exit;
+			if ($e->getCode() == 23000) {
+				$this->error(L("unique_error"));
+			}
+		}
+	}
+
 	//添加页面
 	public function add() {
 		$this->assign("main_title", L("add_new"));
@@ -109,6 +157,36 @@ abstract class CommonController extends BaseController {
 			}
 
 		} catch (\Exception $e) {
+			if ($e->getCode() == 23000) {
+				$this->error(L("unique_error"));
+			}
+		}
+	}
+
+	protected function cms_addHandle() {
+		$oop = M($this->model);
+		$oop->create();
+
+		if (!empty($_FILES['file']['tmp_name'])) {
+			$result = parent::uploadfile($exts = array('jpg', 'gif', 'png', 'jpeg'), $thumb = true);
+			if (!$result['status']) {
+				$this->error($result['info']);
+			}
+			$oop->doc_dir = $result['info']['file']['savepath'];
+			$oop->doc_img = $result['info']['file']['savename'];
+		}
+		//dump(I());
+		//dump($result);exit;
+		try {
+
+			if ($oop->add()) {
+				$this->success(L("add_success"));
+			} else {
+				$this->error(L("add_failed"));
+			}
+
+		} catch (\Exception $e) {
+			//dump($e);exit;
 			if ($e->getCode() == 23000) {
 				$this->error(L("unique_error"));
 			}

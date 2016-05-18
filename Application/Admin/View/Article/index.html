@@ -29,7 +29,6 @@
         <thead>
             <th>#</th>
             <th>文章标题</th>
-            <th>标识</th>
             <th>分类</th>
             <th>是否可用</th>
             <th>排序</th>
@@ -40,8 +39,7 @@
             <volist name="list" id="vo">
                 <tr>
                     <td><a href="__CONTROLLER__/details/{$vo.doc_id}">{$vo.doc_id}</a></td>
-                    <td>{$vo.doc_title}</td>
-                    <td>{$vo.doc_unique}</td>
+                    <td>{$vo.doc_title|cutStr="30"}</td>
                     <td>{$vo.cat_name}</td>
                     <td>{$vo.doc_status|displayIcon}</td>
                     <td>{$vo.doc_sort}</td>

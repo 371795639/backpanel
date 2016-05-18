@@ -3,15 +3,16 @@ namespace Admin\Controller;
 
 use Think\Controller;
 
-class DocumentController extends CommonController {
+class ArticleController extends CommonController {
 	public function _initialize() {
 		parent::_initialize();
-		$this->model = "document";
-		$this->model_view = "DocumentView";
+		$this->model = "article";
+		$this->model_view = "ArticleView";
 		$this->key = "doc_id";
-		$this->title_index = "单页列表";
-		$this->title_details = "单页详情";
+		$this->title_index = "文章列表";
+		$this->title_details = "文章详情";
 	}
+
 	public function index() {
 		parent::cms_index();
 	}

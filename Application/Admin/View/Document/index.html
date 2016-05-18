@@ -40,7 +40,7 @@
             <volist name="list" id="vo">
                 <tr>
                     <td><a href="__CONTROLLER__/details/{$vo.doc_id}">{$vo.doc_id}</a></td>
-                    <td>{$vo.doc_title}</td>
+                    <td>{$vo.doc_title|cutStr="30"}</td>
                     <td>{$vo.doc_unique}</td>
                     <td>{$vo.cat_name}</td>
                     <td>{$vo.doc_status|displayIcon}</td>

@@ -12,7 +12,7 @@
     <form class="uk-form" enctype="multipart/form-data" method="post" action="__CONTROLLER__/addHandle">
         <table class="uk-table">
             <tr>
-                <td width=150>单页标题</td>
+                <td width=150>文章标题</td>
                 <td>
                     <input type="text" name="doc_title" required />
                 </td>
@@ -22,17 +22,11 @@
                 <td>
                     <select name="doc_cat" required>
                         <option value="">--</option>
-                        <volist name=":getObjectList('category','cat_type=1')" id="vo">
+                        <volist name=":getObjectList('category','cat_type=2')" id="vo">
                             <option value="{$vo.cat_id}">{$vo.cat_name}</option>
                         </volist>
                     </select>
                     * 没有分类的话，可先去分类里创建
-                </td>
-            </tr>
-            <tr>
-                <td>唯一标识(英文)</td>
-                <td>
-                    <input type="text" name="doc_unique" required isEnglish="true" />
                 </td>
             </tr>
             <tr>
@@ -75,15 +69,15 @@
                 </td>
             </tr>
             <tr>
-                <td>模板</td>
+                <td>点击数</td>
                 <td>
-                    <input type="text" name="doc_tpl" value="show" required />
+                    <input type="number" name="doc_hit" isNumber='true' required value="{:rand(1,100)}" />
                 </td>
             </tr>
             <tr>
                 <td>排序</td>
                 <td>
-                    <input type="text" name="doc_sort" isNumber='true' required value="10" />*数字越大，排序越靠前
+                    <input type="number" name="doc_sort" isNumber='true' required value="10" />*数字越大，排序越靠前
                 </td>
             </tr>
             <tr>
