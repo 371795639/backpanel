@@ -15,8 +15,7 @@ function category_type($id = "") {
 	$arr = [
 		1 => "单页",
 		2 => "文章",
-		3 => "图片",
-		4 => "下载",
+		3 => "产品",
 	];
 	if ($id) {
 		return $arr[$id];
