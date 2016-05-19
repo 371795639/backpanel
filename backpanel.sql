@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: 2016-05-09 11:04:43
+-- Generation Time: 2016-05-19 10:26:59
 -- 服务器版本： 5.5.42
 -- PHP Version: 5.6.10
 
@@ -3559,6 +3559,39 @@ INSERT INTO `ips_areas` (`area_id`, `parent_id`, `area_name`, `sort`, `isactive`
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `ips_article`
+--
+
+CREATE TABLE `ips_article` (
+  `doc_id` int(11) NOT NULL,
+  `doc_title` varchar(200) NOT NULL,
+  `doc_cat` int(11) NOT NULL,
+  `doc_desc` varchar(300) NOT NULL,
+  `doc_keyword` varchar(50) NOT NULL,
+  `doc_content` text NOT NULL,
+  `doc_status` tinyint(1) NOT NULL DEFAULT '1',
+  `doc_dir` varchar(50) NOT NULL,
+  `doc_img` varchar(50) NOT NULL,
+  `doc_author` varchar(50) NOT NULL,
+  `doc_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `doc_source` varchar(50) NOT NULL,
+  `doc_hit` int(11) NOT NULL,
+  `doc_label` varchar(100) NOT NULL,
+  `doc_sort` int(11) NOT NULL,
+  `doc_update_time` datetime NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `ips_article`
+--
+
+INSERT INTO `ips_article` (`doc_id`, `doc_title`, `doc_cat`, `doc_desc`, `doc_keyword`, `doc_content`, `doc_status`, `doc_dir`, `doc_img`, `doc_author`, `doc_time`, `doc_source`, `doc_hit`, `doc_label`, `doc_sort`, `doc_update_time`) VALUES
+(1, '不问苍生问鬼神 蔡英文就职典礼彩排如庙会', 2, '不问苍生问鬼神 蔡英文就职典礼彩排如庙会', '不问苍生问鬼神 蔡英文就职典礼彩排如庙会', '&lt;h1 id=&quot;4g_title&quot;&gt;不问苍生问鬼神 蔡英文就职典礼彩排如庙会&lt;/h1&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', 1, '2016-05-18/', '573c2fc8afe03.png', '', '2016-05-18 09:03:04', '', 33, '', 10, '2016-05-18 00:00:00'),
+(2, '全球最大邮轮抵达英国 比泰坦尼克号长100米全球最大邮轮抵达英国 比泰坦尼克号长100米全球最大邮轮抵达英国 比泰坦尼克号长100米', 2, '32432', '432', '&lt;p&gt;&lt;span id=&quot;title&quot;&gt;全球最大邮轮抵达英国 比泰坦尼克号长100米&lt;/span&gt;&lt;/p&gt;', 1, '2016-05-18/', '573c3019565b1.png', '', '2016-05-18 09:04:25', '', 66, '', 10, '2016-05-18 00:00:00');
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `ips_auth_group`
 --
 
@@ -3664,14 +3697,16 @@ CREATE TABLE `ips_category` (
   `cat_index` varchar(50) NOT NULL DEFAULT 'index',
   `cat_details` varchar(50) NOT NULL DEFAULT 'details',
   `cat_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='文章分类表';
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='文章分类表';
 
 --
 -- 转存表中的数据 `ips_category`
 --
 
 INSERT INTO `ips_category` (`cat_id`, `cat_name`, `cat_status`, `cat_type`, `cat_remark`, `cat_index`, `cat_details`, `cat_time`) VALUES
-(1, '测试', 1, 1, '测试', 'index', 'details', '2016-05-09 08:48:17');
+(1, '测试', 0, 1, '4444666', 'index', 'details', '2016-05-09 08:48:17'),
+(2, '国内新闻', 1, 2, '', 'index', 'details', '2016-05-18 08:17:14'),
+(3, '下载分类', 1, 4, '', 'index', 'details', '2016-05-19 08:17:27');
 
 -- --------------------------------------------------------
 
@@ -3986,15 +4021,20 @@ CREATE TABLE `ips_document` (
   `doc_status` tinyint(1) NOT NULL DEFAULT '1',
   `doc_dir` varchar(50) NOT NULL,
   `doc_img` varchar(50) NOT NULL,
-  `doc_author` varchar(50) NOT NULL,
   `doc_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `doc_source` varchar(50) NOT NULL,
-  `doc_hit` int(11) NOT NULL,
-  `doc_label` int(11) NOT NULL,
   `doc_tpl` varchar(20) NOT NULL,
-  `doc_sort` int(11) NOT NULL,
+  `doc_sort` int(11) NOT NULL DEFAULT '10',
   `doc_update_time` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `ips_document`
+--
+
+INSERT INTO `ips_document` (`doc_id`, `doc_title`, `doc_cat`, `doc_desc`, `doc_keyword`, `doc_content`, `doc_unique`, `doc_status`, `doc_dir`, `doc_img`, `doc_time`, `doc_source`, `doc_tpl`, `doc_sort`, `doc_update_time`) VALUES
+(1, '测试单页', 1, '测试单页', '', '&lt;p&gt;测试单页&lt;/p&gt;', 'mmm', 1, '2016-05-10/', '5731a7c16de3f.png', '2016-05-17 02:38:17', '434324', 'show', 10, '2016-05-10 00:00:00'),
+(3, '测试单页', 1, '43543', '', '&lt;p&gt;5435&lt;br/&gt;&lt;/p&gt;', 'hhh', 1, '', '', '2016-05-18 08:53:58', '', 'show', 10, '2016-05-18 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -4027,7 +4067,7 @@ CREATE TABLE `ips_member` (
 --
 
 INSERT INTO `ips_member` (`id`, `account`, `nickname`, `password`, `bind_account`, `last_login_time`, `last_login_ip`, `login_count`, `verify`, `email`, `remark`, `create_time`, `update_time`, `status`, `type_id`, `info`, `salt`) VALUES
-(1, 'admin', '超级管理员', 'e10adc3949ba59abbe56e057f20f883e', '', '2016-05-09 15:08:43', '127.0.0.1', 216, '', '383542899@qq.com', 'test', '2013-10-15 03:48:33', '2013-10-17 11:42:28', 1, '', '', ''),
+(1, 'admin', '超级管理员', 'e10adc3949ba59abbe56e057f20f883e', '', '2016-05-19 11:49:57', '127.0.0.1', 223, '', '383542899@qq.com', 'test', '2013-10-15 03:48:33', '2013-10-17 11:42:28', 1, '', '', ''),
 (2, 'hello', '测试管理员', '48a0bbc767ef81d1daeb6ea5d4dedbca', '', '2016-05-06 15:27:36', '127.0.0.1', 1, '', '245995445@qq.com', '1212', '2013-10-17 06:45:49', '2016-05-06 15:24:53', 1, '', '', 'FqlmfEJGbzGevrCkbMBL'),
 (3, 'admin121', 'admin', '0192023a7bbd73250516f069df18b500', '', '', '', 0, '', '3835428991@qq.com', '2332432', '2014-01-14 07:26:12', '2014-01-14 15:28:50', 1, '', '', '');
 
@@ -4048,7 +4088,7 @@ CREATE TABLE `ips_session` (
 --
 
 INSERT INTO `ips_session` (`session_id`, `session_expire`, `session_data`) VALUES
-('698ce1af0e93da85eec3df77d067e769', 1462801771, 0x64326439373763353834343432373164396337383031383765393366383065357c613a323a7b733a31313a227665726966795f636f6465223b733a33323a223561656165613861363137303235616233306434353064663532386637663465223b733a31313a227665726966795f74696d65223b693a313436323737363236303b7d7569647c733a313a2231223b);
+('fcec86303894c03dabe9a9ef16118840', 1463664357, 0x64326439373763353834343432373164396337383031383765393366383065357c613a323a7b733a31313a227665726966795f636f6465223b733a33323a226666616632613732303661633363363466663830346434303733383332343962223b733a31313a227665726966795f74696d65223b693a313436333632393733323b7d7569647c733a313a2231223b);
 
 -- --------------------------------------------------------
 
@@ -4062,7 +4102,7 @@ CREATE TABLE `ips_weblog` (
   `log_action` varchar(100) NOT NULL,
   `log_sql` varchar(200) NOT NULL,
   `log_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=MyISAM AUTO_INCREMENT=1755 DEFAULT CHARSET=utf8 COMMENT='操作日志'
+) ENGINE=MyISAM AUTO_INCREMENT=1863 DEFAULT CHARSET=utf8 COMMENT='操作日志'
 /*!50100 PARTITION BY RANGE (log_id)
 (PARTITION p0 VALUES LESS THAN (2000000) ENGINE = MyISAM,
  PARTITION p1 VALUES LESS THAN (4000000) ENGINE = MyISAM,
@@ -5803,7 +5843,115 @@ INSERT INTO `ips_weblog` (`log_id`, `log_admin`, `log_action`, `log_sql`, `log_t
 (1751, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 07:25:14'),
 (1752, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 07:25:14'),
 (1753, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 07:25:14'),
-(1754, 'admin', 'Category/addHandle', 'INSERT INTO `ips_category` (`cat_name`,`cat_type`,`cat_status`,`cat_index`,`cat_details`,`cat_remark`) VALUES (''测试'',''1'',''1'',''index'',''details'',''测试'')', '2016-05-09 08:48:17');
+(1754, 'admin', 'Category/addHandle', 'INSERT INTO `ips_category` (`cat_name`,`cat_type`,`cat_status`,`cat_index`,`cat_details`,`cat_remark`) VALUES (''测试'',''1'',''1'',''index'',''details'',''测试'')', '2016-05-09 08:48:17'),
+(1755, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 09:17:22'),
+(1756, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 09:17:22'),
+(1757, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 09:17:23'),
+(1758, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 09:17:24'),
+(1759, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 09:17:24'),
+(1760, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 09:17:24'),
+(1761, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 09:17:43'),
+(1762, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 09:17:43'),
+(1763, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-09 09:17:43'),
+(1764, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 02:42:26'),
+(1765, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 02:42:26'),
+(1766, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 02:42:26'),
+(1767, 'admin', 'Category/updateHandle', 'UPDATE `ips_category` SET `cat_name`=''测试'',`cat_type`=''1'',`cat_status`=''1'',`cat_index`=''index'',`cat_details`=''details'',`cat_remark`=''4444'' WHERE `cat_id` = 1', '2016-05-10 02:50:31'),
+(1768, 'admin', 'Category/updateHandle', 'UPDATE `ips_category` SET `cat_name`=''测试'',`cat_type`=''1'',`cat_status`=''1'',`cat_index`=''index'',`cat_details`=''details'',`cat_remark`=''4444666'' WHERE `cat_id` = 1', '2016-05-10 02:51:12'),
+(1769, 'admin', 'Category/updateHandle', 'UPDATE `ips_category` SET `cat_name`=''测试'',`cat_type`=''2'',`cat_status`=''1'',`cat_index`=''index'',`cat_details`=''details'',`cat_remark`=''4444666'' WHERE `cat_id` = 1', '2016-05-10 02:53:27'),
+(1770, 'admin', 'Category/addHandle', 'INSERT INTO `ips_category` (`cat_name`,`cat_type`,`cat_status`,`cat_index`,`cat_details`,`cat_remark`) VALUES (''测试'',''1'',''1'',''index'',''details'','''')', '2016-05-10 02:53:38'),
+(1771, 'admin', 'Category/updateHandle', 'UPDATE `ips_category` SET `cat_name`=''测试'',`cat_type`=''2'',`cat_status`=''0'',`cat_index`=''index'',`cat_details`=''details'',`cat_remark`=''4444666'' WHERE `cat_id` = 1', '2016-05-10 05:31:17'),
+(1772, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 06:08:27'),
+(1773, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 06:08:27'),
+(1774, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 06:08:27'),
+(1775, 'admin', 'Config/phpinfo', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 06:43:29'),
+(1776, 'admin', 'Config/phpinfo', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 06:43:29'),
+(1777, 'admin', 'Config/phpinfo', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 06:43:29'),
+(1778, 'admin', 'Category/updateHandle', 'UPDATE `ips_category` SET `cat_name`=''测试'',`cat_type`=''1'',`cat_status`=''0'',`cat_index`=''index'',`cat_details`=''details'',`cat_remark`=''4444666'' WHERE `cat_id` = 1', '2016-05-10 06:49:16'),
+(1779, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 07:28:21'),
+(1780, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 07:52:39'),
+(1781, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 07:52:39'),
+(1782, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 07:52:39'),
+(1783, 'admin', 'Document/addHandle', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 08:19:22'),
+(1784, 'admin', 'Document/addHandle', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 08:20:19'),
+(1785, 'admin', 'Document/addHandle', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 08:21:31'),
+(1786, 'admin', 'Document/addHandle', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 08:21:45'),
+(1787, 'admin', 'Document/addHandle', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 08:43:18'),
+(1788, 'admin', 'Document/addHandle', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 08:44:38'),
+(1789, 'admin', 'Document/addHandle', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 08:46:23'),
+(1790, 'admin', 'Document/addHandle', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 08:46:35'),
+(1791, 'admin', 'Document/addHandle', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 08:48:26'),
+(1792, 'admin', 'Document/addHandle', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 08:48:36'),
+(1793, 'admin', 'Index/setting', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 08:51:32'),
+(1794, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 08:51:38'),
+(1795, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 08:51:40'),
+(1796, 'admin', 'Index/setting', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 08:51:47'),
+(1797, 'admin', 'Config/phpinfo', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 08:51:48'),
+(1798, 'admin', 'Index/setting', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 08:51:49'),
+(1799, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 09:05:11'),
+(1800, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 09:05:11'),
+(1801, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 09:05:13'),
+(1802, 'admin', 'Document/addHandle', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 09:07:51'),
+(1803, 'admin', 'Document/addHandle', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 09:09:04'),
+(1804, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 09:11:58'),
+(1805, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 09:11:58'),
+(1806, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 09:12:08'),
+(1807, 'admin', 'Document/addHandle', 'INSERT INTO `ips_document` (`doc_title`,`doc_cat`,`doc_unique`,`doc_desc`,`doc_keyword`,`doc_status`,`doc_tpl`,`doc_sort`,`doc_source`,`doc_update_time`,`doc_content`,`doc_dir`,`doc_img`) VALUES (''测试单', '2016-05-10 09:13:10'),
+(1808, 'admin', 'Document/addHandle', 'INSERT INTO `ips_document` (`doc_title`,`doc_cat`,`doc_unique`,`doc_desc`,`doc_keyword`,`doc_status`,`doc_tpl`,`doc_sort`,`doc_source`,`doc_update_time`,`doc_dir`,`doc_img`) VALUES (''测试单页'',''1'',''test'',', '2016-05-10 09:14:17'),
+(1809, 'admin', 'Document/addHandle', 'INSERT INTO `ips_document` (`doc_title`,`doc_cat`,`doc_unique`,`doc_desc`,`doc_keyword`,`doc_status`,`doc_tpl`,`doc_sort`,`doc_source`,`doc_update_time`,`doc_dir`,`doc_img`) VALUES (''测试单页'',''1'',''test'',', '2016-05-10 09:14:20'),
+(1810, 'admin', 'Document/addHandle', 'INSERT INTO `ips_document` (`doc_title`,`doc_cat`,`doc_unique`,`doc_desc`,`doc_keyword`,`doc_status`,`doc_tpl`,`doc_sort`,`doc_source`,`doc_update_time`,`doc_dir`,`doc_img`) VALUES (''测试单页'',''1'',''test'',', '2016-05-10 09:15:00'),
+(1811, 'admin', 'Document/addHandle', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 09:16:12'),
+(1812, 'admin', 'Document/addHandle', 'INSERT INTO `ips_document` (`doc_title`,`doc_cat`,`doc_unique`,`doc_desc`,`doc_keyword`,`doc_status`,`doc_tpl`,`doc_sort`,`doc_source`,`doc_update_time`,`doc_content`,`doc_dir`,`doc_img`) VALUES (''测试单', '2016-05-10 09:16:54'),
+(1813, 'admin', 'Document/addHandle', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 09:17:47'),
+(1814, 'admin', 'Document/addHandle', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 09:19:00'),
+(1815, 'admin', 'Document/addHandle', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-10 09:19:03'),
+(1816, 'admin', 'Document/addHandle', 'INSERT INTO `ips_document` (`doc_title`,`doc_cat`,`doc_unique`,`doc_desc`,`doc_keyword`,`doc_status`,`doc_tpl`,`doc_sort`,`doc_source`,`doc_update_time`,`doc_dir`,`doc_img`) VALUES (''测试单页'',''1'',''mmm'',''', '2016-05-10 09:19:11'),
+(1817, 'admin', 'Document/addHandle', 'INSERT INTO `ips_document` (`doc_title`,`doc_cat`,`doc_unique`,`doc_desc`,`doc_keyword`,`doc_status`,`doc_tpl`,`doc_sort`,`doc_source`,`doc_update_time`,`doc_content`,`doc_dir`,`doc_img`) VALUES (''测试单', '2016-05-10 09:20:01'),
+(1818, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-16 06:42:52'),
+(1819, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-16 06:42:52'),
+(1820, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-16 06:42:52'),
+(1821, 'admin', 'Index/setting', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-16 06:43:02'),
+(1822, 'admin', 'Document/addHandle', 'INSERT INTO `ips_document` (`doc_title`,`doc_cat`,`doc_unique`,`doc_desc`,`doc_keyword`,`doc_status`,`doc_tpl`,`doc_sort`,`doc_source`,`doc_update_time`,`doc_content`,`doc_dir`,`doc_img`) VALUES (''423', '2016-05-16 07:12:30'),
+(1823, 'admin', 'Document/addHandle', 'INSERT INTO `ips_document` (`doc_title`,`doc_cat`,`doc_unique`,`doc_desc`,`doc_keyword`,`doc_status`,`doc_tpl`,`doc_sort`,`doc_source`,`doc_update_time`,`doc_dir`,`doc_img`) VALUES (''423432哦哦哦哦'',''1'',''', '2016-05-16 07:12:47'),
+(1824, 'admin', 'Document/addHandle', 'INSERT INTO `ips_document` (`doc_title`,`doc_cat`,`doc_unique`,`doc_desc`,`doc_keyword`,`doc_status`,`doc_tpl`,`doc_sort`,`doc_source`,`doc_update_time`,`doc_dir`,`doc_img`) VALUES (''423432哦哦哦哦'',''1'',''', '2016-05-16 07:13:01'),
+(1825, 'admin', 'Document/addHandle', 'INSERT INTO `ips_document` (`doc_title`,`doc_cat`,`doc_unique`,`doc_desc`,`doc_keyword`,`doc_status`,`doc_tpl`,`doc_sort`,`doc_source`,`doc_update_time`,`doc_content`,`doc_dir`,`doc_img`) VALUES (''测试单', '2016-05-16 07:19:36'),
+(1826, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-17 02:29:17'),
+(1827, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-17 02:29:17'),
+(1828, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-17 02:29:17'),
+(1829, 'admin', 'Document/updateHandle', 'UPDATE `ips_document` SET `doc_title`=''测试单页'',`doc_cat`=''1'',`doc_unique`=''mmm'',`doc_desc`=''测试单页'',`doc_keyword`='''',`doc_status`=''1'',`doc_tpl`=''show'',`doc_sort`=''10'',`doc_source`=''434324'',`doc_update_tim', '2016-05-17 02:38:17'),
+(1830, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-18 07:43:26'),
+(1831, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-18 07:43:26'),
+(1832, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-18 07:43:26'),
+(1833, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-18 07:43:40'),
+(1834, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-18 07:43:40'),
+(1835, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-18 07:43:40'),
+(1836, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-18 07:46:34'),
+(1837, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-18 07:46:34'),
+(1838, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-18 07:46:34'),
+(1839, 'admin', 'Category/addHandle', 'INSERT INTO `ips_category` (`cat_name`,`cat_type`,`cat_status`,`cat_index`,`cat_details`,`cat_remark`) VALUES (''国内新闻'',''2'',''1'',''index'',''details'','''')', '2016-05-18 08:17:14'),
+(1840, 'admin', 'Article/addHandle', 'INSERT INTO `ips_document` (`doc_title`,`doc_cat`,`doc_desc`,`doc_keyword`,`doc_status`,`doc_sort`,`doc_source`,`doc_update_time`,`doc_content`,`doc_dir`,`doc_img`) VALUES (''423432哦哦哦哦'',''2'',''24234'',''4', '2016-05-18 08:17:36'),
+(1841, 'admin', 'Article/addHandle', 'INSERT INTO `ips_weblog` (`log_admin`,`log_action`,`log_sql`) VALUES (''admin'',''Article/addHandle'',''INSERT INTO `ips_document` (`doc_title`,`doc_cat`,`doc_desc`,`doc_keyword`,`doc_status`,`doc_sort`,`d', '2016-05-18 08:17:36'),
+(1842, 'admin', 'Article/updateHandle', 'UPDATE `ips_document` SET `doc_title`=''423432哦哦哦哦'',`doc_cat`=''2'',`doc_desc`=''24234'',`doc_keyword`=''432'',`doc_status`=''1'',`doc_sort`=''10'',`doc_source`='''',`doc_update_time`=''2016-05-18 00:00:00'',`doc_co', '2016-05-18 08:19:42'),
+(1843, 'admin', 'Article/updateHandle', 'INSERT INTO `ips_weblog` (`log_admin`,`log_action`,`log_sql`) VALUES (''admin'',''Article/updateHandle'',''UPDATE `ips_document` SET `doc_title`=\\''423432哦哦哦哦\\'',`doc_cat`=\\''2\\'',`doc_desc`=\\''24234\\'',`doc_key', '2016-05-18 08:19:42'),
+(1844, 'admin', 'Article/deleteHandle', 'DELETE FROM `ips_article` WHERE `doc_id` = 2', '2016-05-18 08:21:33'),
+(1845, 'admin', 'Document/addHandle', 'INSERT INTO `ips_document` (`doc_title`,`doc_cat`,`doc_unique`,`doc_desc`,`doc_keyword`,`doc_status`,`doc_tpl`,`doc_sort`,`doc_source`,`doc_update_time`,`doc_content`) VALUES (''测试单页'',''1'',''hhh'',''43543''', '2016-05-18 08:53:58'),
+(1846, 'admin', 'Document/deleteHandle', 'DELETE FROM `ips_document` WHERE `doc_id` = 2', '2016-05-18 08:54:05'),
+(1847, 'admin', 'Article/addHandle', 'INSERT INTO `ips_article` (`doc_title`,`doc_cat`,`doc_desc`,`doc_keyword`,`doc_status`,`doc_label`,`doc_hit`,`doc_sort`,`doc_source`,`doc_update_time`,`doc_content`,`doc_dir`,`doc_img`) VALUES (''不问苍生问', '2016-05-18 09:03:04'),
+(1848, 'admin', 'Article/addHandle', 'INSERT INTO `ips_article` (`doc_title`,`doc_cat`,`doc_desc`,`doc_keyword`,`doc_status`,`doc_label`,`doc_hit`,`doc_sort`,`doc_source`,`doc_update_time`,`doc_content`,`doc_dir`,`doc_img`) VALUES (''全球最大邮', '2016-05-18 09:04:25'),
+(1849, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-19 03:49:58'),
+(1850, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-19 03:49:58'),
+(1851, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-19 03:49:58'),
+(1852, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-19 07:23:52'),
+(1853, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-19 07:23:52'),
+(1854, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-19 07:23:52'),
+(1855, 'admin', 'Category/addHandle', 'INSERT INTO `ips_category` (`cat_name`,`cat_type`,`cat_status`,`cat_index`,`cat_details`,`cat_remark`) VALUES (''下载分类'',''4'',''1'',''index'',''details'','''')', '2016-05-19 08:17:27'),
+(1856, 'admin', 'Download/addHandle', 'SHOW COLUMNS FROM `ips_download`', '2016-05-19 08:17:56'),
+(1857, 'admin', 'Download/addHandle', 'SHOW COLUMNS FROM `ips_download`', '2016-05-19 08:19:53'),
+(1858, 'admin', 'Download/addHandle', 'SHOW COLUMNS FROM `ips_download`', '2016-05-19 08:22:17'),
+(1859, 'admin', 'Download/addHandle', 'SHOW COLUMNS FROM `ips_download`', '2016-05-19 08:22:52'),
+(1860, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-19 08:25:51'),
+(1861, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-19 08:25:51'),
+(1862, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-19 08:25:51');
 
 -- --------------------------------------------------------
 
@@ -6070,6 +6218,12 @@ ALTER TABLE `ips_areas`
   ADD PRIMARY KEY (`area_id`);
 
 --
+-- Indexes for table `ips_article`
+--
+ALTER TABLE `ips_article`
+  ADD PRIMARY KEY (`doc_id`);
+
+--
 -- Indexes for table `ips_auth_group`
 --
 ALTER TABLE `ips_auth_group`
@@ -6124,7 +6278,8 @@ ALTER TABLE `ips_countries`
 -- Indexes for table `ips_document`
 --
 ALTER TABLE `ips_document`
-  ADD PRIMARY KEY (`doc_id`);
+  ADD PRIMARY KEY (`doc_id`),
+  ADD UNIQUE KEY `doc_unique` (`doc_unique`);
 
 --
 -- Indexes for table `ips_member`
@@ -6164,6 +6319,11 @@ ALTER TABLE `ips_zones`
 ALTER TABLE `ips_areas`
   MODIFY `area_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=659008;
 --
+-- AUTO_INCREMENT for table `ips_article`
+--
+ALTER TABLE `ips_article`
+  MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `ips_auth_group`
 --
 ALTER TABLE `ips_auth_group`
@@ -6182,7 +6342,7 @@ ALTER TABLE `ips_autoperform`
 -- AUTO_INCREMENT for table `ips_category`
 --
 ALTER TABLE `ips_category`
-  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `ips_countries`
 --
@@ -6192,7 +6352,7 @@ ALTER TABLE `ips_countries`
 -- AUTO_INCREMENT for table `ips_document`
 --
 ALTER TABLE `ips_document`
-  MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `ips_member`
 --
@@ -6202,7 +6362,7 @@ ALTER TABLE `ips_member`
 -- AUTO_INCREMENT for table `ips_weblog`
 --
 ALTER TABLE `ips_weblog`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1755;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1863;
 --
 -- AUTO_INCREMENT for table `ips_zones`
 --
