@@ -29,12 +29,12 @@ $global_config = array(
 	//通用邮箱配置
 	"EMAIL_CONFIG" => array(
 		"NOTIFY" => array(
-			"usr" => "applications@austpay.com",
-			"pwd" => "Austpayfiona822",
+			"usr" => "",
+			"pwd" => "",
 		),
 		"BILLING" => array(
-			"usr" => "billing@altercards.com",
-			"pwd" => "wyt52094520",
+			"usr" => "",
+			"pwd" => "",
 		),
 	),
 
