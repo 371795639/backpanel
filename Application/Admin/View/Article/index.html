@@ -13,7 +13,7 @@
         <div class="uk-width-1-4">分类:
             <select name="doc_cat">
                 <option value="">--</option>
-                <volist name=":getObjectList('category','cat_type=1')" id="vo">
+                <volist name=":getObjectList('category','cat_type=2')" id="vo">
                     <option value="{$vo.cat_id}">{$vo.cat_name}</option>
                 </volist>
             </select>
