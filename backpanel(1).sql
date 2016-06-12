@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: 2016-05-19 10:26:59
+-- Generation Time: 2016-06-12 11:06:56
 -- 服务器版本： 5.5.42
 -- PHP Version: 5.6.10
 
@@ -3705,8 +3705,7 @@ CREATE TABLE `ips_category` (
 
 INSERT INTO `ips_category` (`cat_id`, `cat_name`, `cat_status`, `cat_type`, `cat_remark`, `cat_index`, `cat_details`, `cat_time`) VALUES
 (1, '测试', 0, 1, '4444666', 'index', 'details', '2016-05-09 08:48:17'),
-(2, '国内新闻', 1, 2, '', 'index', 'details', '2016-05-18 08:17:14'),
-(3, '下载分类', 1, 4, '', 'index', 'details', '2016-05-19 08:17:27');
+(2, '国内新闻', 1, 2, '', 'index', 'details', '2016-05-18 08:17:14');
 
 -- --------------------------------------------------------
 
@@ -4067,7 +4066,7 @@ CREATE TABLE `ips_member` (
 --
 
 INSERT INTO `ips_member` (`id`, `account`, `nickname`, `password`, `bind_account`, `last_login_time`, `last_login_ip`, `login_count`, `verify`, `email`, `remark`, `create_time`, `update_time`, `status`, `type_id`, `info`, `salt`) VALUES
-(1, 'admin', '超级管理员', 'e10adc3949ba59abbe56e057f20f883e', '', '2016-05-19 11:49:57', '127.0.0.1', 223, '', '383542899@qq.com', 'test', '2013-10-15 03:48:33', '2013-10-17 11:42:28', 1, '', '', ''),
+(1, 'admin', '超级管理员', 'e10adc3949ba59abbe56e057f20f883e', '', '2016-06-12 17:05:51', '127.0.0.1', 224, '', '383542899@qq.com', 'test', '2013-10-15 03:48:33', '2013-10-17 11:42:28', 1, '', '', ''),
 (2, 'hello', '测试管理员', '48a0bbc767ef81d1daeb6ea5d4dedbca', '', '2016-05-06 15:27:36', '127.0.0.1', 1, '', '245995445@qq.com', '1212', '2013-10-17 06:45:49', '2016-05-06 15:24:53', 1, '', '', 'FqlmfEJGbzGevrCkbMBL'),
 (3, 'admin121', 'admin', '0192023a7bbd73250516f069df18b500', '', '', '', 0, '', '3835428991@qq.com', '2332432', '2014-01-14 07:26:12', '2014-01-14 15:28:50', 1, '', '', '');
 
@@ -4088,7 +4087,7 @@ CREATE TABLE `ips_session` (
 --
 
 INSERT INTO `ips_session` (`session_id`, `session_expire`, `session_data`) VALUES
-('fcec86303894c03dabe9a9ef16118840', 1463664357, 0x64326439373763353834343432373164396337383031383765393366383065357c613a323a7b733a31313a227665726966795f636f6465223b733a33323a226666616632613732303661633363363466663830346434303733383332343962223b733a31313a227665726966795f74696d65223b693a313436333632393733323b7d7569647c733a313a2231223b);
+('d47d814b3f263c9a5a228f3b7905e75b', 1465740397, 0x64326439373763353834343432373164396337383031383765393366383065357c613a323a7b733a31313a227665726966795f636f6465223b733a33323a223436323665633365323333313233383864393335333530643463366239656239223b733a31313a227665726966795f74696d65223b693a313436353732323334373b7d7569647c733a313a2231223b);
 
 -- --------------------------------------------------------
 
@@ -4102,7 +4101,7 @@ CREATE TABLE `ips_weblog` (
   `log_action` varchar(100) NOT NULL,
   `log_sql` varchar(200) NOT NULL,
   `log_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=MyISAM AUTO_INCREMENT=1863 DEFAULT CHARSET=utf8 COMMENT='操作日志'
+) ENGINE=MyISAM AUTO_INCREMENT=1879 DEFAULT CHARSET=utf8 COMMENT='操作日志'
 /*!50100 PARTITION BY RANGE (log_id)
 (PARTITION p0 VALUES LESS THAN (2000000) ENGINE = MyISAM,
  PARTITION p1 VALUES LESS THAN (4000000) ENGINE = MyISAM,
@@ -5951,7 +5950,23 @@ INSERT INTO `ips_weblog` (`log_id`, `log_admin`, `log_action`, `log_sql`, `log_t
 (1859, 'admin', 'Download/addHandle', 'SHOW COLUMNS FROM `ips_download`', '2016-05-19 08:22:52'),
 (1860, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-19 08:25:51'),
 (1861, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-19 08:25:51'),
-(1862, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-19 08:25:51');
+(1862, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-19 08:25:51'),
+(1863, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-19 08:48:26'),
+(1864, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-19 08:48:26'),
+(1865, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-19 08:48:26'),
+(1866, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-19 09:41:13'),
+(1867, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-19 09:41:13'),
+(1868, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-19 09:41:13'),
+(1869, 'admin', 'Category/deleteHandle', 'DELETE FROM `ips_category` WHERE `cat_id` = 3', '2016-05-19 09:41:47'),
+(1870, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-19 09:43:12'),
+(1871, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-19 09:43:12'),
+(1872, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-05-19 09:43:12'),
+(1873, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-12 09:05:53'),
+(1874, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-12 09:05:53'),
+(1875, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-12 09:05:53'),
+(1876, 'admin', 'Index/setting', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-12 09:06:01'),
+(1877, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-12 09:06:04'),
+(1878, 'admin', 'Group/assignAccess', 'SELECT * FROM `ips_auth_rule` WHERE `module` = ''管理员组'' ', '2016-06-12 09:06:32');
 
 -- --------------------------------------------------------
 
@@ -6362,7 +6377,7 @@ ALTER TABLE `ips_member`
 -- AUTO_INCREMENT for table `ips_weblog`
 --
 ALTER TABLE `ips_weblog`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1863;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1879;
 --
 -- AUTO_INCREMENT for table `ips_zones`
 --
