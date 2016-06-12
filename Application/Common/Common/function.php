@@ -5,9 +5,42 @@ if (is_readable($file_arr) == true) {
 	require $file_arr;
 }
 //自定义函数文件
-$file_local = "./Application/Common/Common/localfunction.php";
-if (is_readable($file_arr) == true) {
+$file_local = "./Application/Common/Common/local.php";
+if (is_readable($file_local) == true) {
 	require $file_local;
+}
+
+/**
+ * 返回路径文件列表
+ * @param string 文件目录
+ * @param string 只选择目录中该文件后缀的
+ */
+function getFileList($directory, $suffix = "") {
+	$files = array();
+	if ($suffix != "") {
+		$len = -(int) strlen($suffix);
+	}
+
+	try {
+		$dir = new DirectoryIterator($directory);
+	} catch (Exception $e) {
+		throw new Exception($directory . ' is not readable');
+	}
+	foreach ($dir as $file) {
+		if ($file->isDot()) {
+			continue;
+		}
+		$file_name = $file->getFileName();
+		if ($suffix != "") {
+			if (substr($file_name, $len) == $suffix) {
+				$files[] = $file_name;
+			}
+
+		} else {
+			$files[] = $file_name;
+		}
+	}
+	return $files;
 }
 
 /**
