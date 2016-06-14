@@ -11,19 +11,6 @@ function admin_to_role($uid) {
 
 }
 
-function category_type($id = "") {
-	$arr = [
-		1 => "单页",
-		2 => "文章",
-		3 => "产品",
-	];
-	if ($id) {
-		return $arr[$id];
-	} else {
-		return $arr;
-	}
-}
-
 function group_to_rule($group_id, $module) {
 	$oop = M('authGroup');
 	$list = $oop->find($group_id);

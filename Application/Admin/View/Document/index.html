@@ -11,10 +11,10 @@
             <input type="text" name="doc_title" placeholder="" class="uk-width-1-1">
         </div>
         <div class="uk-width-1-4">分类:
-            <select name="doc_cat">
+            <select name="doc_cat" required>
                 <option value="">--</option>
-                <volist name=":getObjectList('category','cat_type=1')" id="vo">
-                    <option value="{$vo.cat_id}">{$vo.cat_name}</option>
+                <volist name=":getCategoryList()" id="vo">
+                    <option value="{$vo.cat_id}">{$vo.level|levelshow}{$vo.cat_name}</option>
                 </volist>
             </select>
         </div>

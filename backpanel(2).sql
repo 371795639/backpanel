@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: 2016-06-12 11:06:56
+-- Generation Time: 2016-06-14 08:48:06
 -- 服务器版本： 5.5.42
 -- PHP Version: 5.6.10
 
@@ -3565,6 +3565,7 @@ INSERT INTO `ips_areas` (`area_id`, `parent_id`, `area_name`, `sort`, `isactive`
 CREATE TABLE `ips_article` (
   `doc_id` int(11) NOT NULL,
   `doc_title` varchar(200) NOT NULL,
+  `doc_property` varchar(50) NOT NULL COMMENT '标题属性',
   `doc_cat` int(11) NOT NULL,
   `doc_desc` varchar(300) NOT NULL,
   `doc_keyword` varchar(50) NOT NULL,
@@ -3585,9 +3586,9 @@ CREATE TABLE `ips_article` (
 -- 转存表中的数据 `ips_article`
 --
 
-INSERT INTO `ips_article` (`doc_id`, `doc_title`, `doc_cat`, `doc_desc`, `doc_keyword`, `doc_content`, `doc_status`, `doc_dir`, `doc_img`, `doc_author`, `doc_time`, `doc_source`, `doc_hit`, `doc_label`, `doc_sort`, `doc_update_time`) VALUES
-(1, '不问苍生问鬼神 蔡英文就职典礼彩排如庙会', 2, '不问苍生问鬼神 蔡英文就职典礼彩排如庙会', '不问苍生问鬼神 蔡英文就职典礼彩排如庙会', '&lt;h1 id=&quot;4g_title&quot;&gt;不问苍生问鬼神 蔡英文就职典礼彩排如庙会&lt;/h1&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', 1, '2016-05-18/', '573c2fc8afe03.png', '', '2016-05-18 09:03:04', '', 33, '', 10, '2016-05-18 00:00:00'),
-(2, '全球最大邮轮抵达英国 比泰坦尼克号长100米全球最大邮轮抵达英国 比泰坦尼克号长100米全球最大邮轮抵达英国 比泰坦尼克号长100米', 2, '32432', '432', '&lt;p&gt;&lt;span id=&quot;title&quot;&gt;全球最大邮轮抵达英国 比泰坦尼克号长100米&lt;/span&gt;&lt;/p&gt;', 1, '2016-05-18/', '573c3019565b1.png', '', '2016-05-18 09:04:25', '', 66, '', 10, '2016-05-18 00:00:00');
+INSERT INTO `ips_article` (`doc_id`, `doc_title`, `doc_property`, `doc_cat`, `doc_desc`, `doc_keyword`, `doc_content`, `doc_status`, `doc_dir`, `doc_img`, `doc_author`, `doc_time`, `doc_source`, `doc_hit`, `doc_label`, `doc_sort`, `doc_update_time`) VALUES
+(1, '不问苍生问鬼神 蔡英文就职典礼彩排如庙会', '', 2, '不问苍生问鬼神 蔡英文就职典礼彩排如庙会', '不问苍生问鬼神 蔡英文就职典礼彩排如庙会', '&lt;h1 id=&quot;4g_title&quot;&gt;不问苍生问鬼神 蔡英文就职典礼彩排如庙会&lt;/h1&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', 1, '2016-05-18/', '573c2fc8afe03.png', '', '2016-05-18 09:03:04', '', 33, '', 10, '2016-05-18 00:00:00'),
+(2, '全球最大邮轮抵达英国 比泰坦尼克号长100米全球最大邮轮抵达英国 比泰坦尼克号长100米全球最大邮轮抵达英国 比泰坦尼克号长100米', '', 2, '32432', '432', '&lt;p&gt;&lt;span id=&quot;title&quot;&gt;全球最大邮轮抵达英国 比泰坦尼克号长100米&lt;/span&gt;&lt;/p&gt;', 1, '2016-05-18/', '573c3019565b1.png', '', '2016-05-18 09:04:25', '', 66, '', 10, '2016-05-18 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -3691,21 +3692,30 @@ INSERT INTO `ips_autoperform` (`id`, `name`, `remark`, `isactive`, `email`, `aut
 CREATE TABLE `ips_category` (
   `cat_id` int(11) NOT NULL,
   `cat_name` varchar(50) NOT NULL,
+  `cat_parent` int(11) NOT NULL DEFAULT '0',
   `cat_status` tinyint(1) NOT NULL DEFAULT '1',
-  `cat_type` tinyint(4) NOT NULL DEFAULT '1',
   `cat_remark` varchar(300) NOT NULL,
   `cat_index` varchar(50) NOT NULL DEFAULT 'index',
   `cat_details` varchar(50) NOT NULL DEFAULT 'details',
   `cat_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='文章分类表';
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='文章分类表';
 
 --
 -- 转存表中的数据 `ips_category`
 --
 
-INSERT INTO `ips_category` (`cat_id`, `cat_name`, `cat_status`, `cat_type`, `cat_remark`, `cat_index`, `cat_details`, `cat_time`) VALUES
-(1, '测试', 0, 1, '4444666', 'index', 'details', '2016-05-09 08:48:17'),
-(2, '国内新闻', 1, 2, '', 'index', 'details', '2016-05-18 08:17:14');
+INSERT INTO `ips_category` (`cat_id`, `cat_name`, `cat_parent`, `cat_status`, `cat_remark`, `cat_index`, `cat_details`, `cat_time`) VALUES
+(1, '测试', 0, 0, '4444666', 'index', 'details', '2016-05-09 08:48:17'),
+(2, '国内新闻', 0, 0, '', 'index', 'details', '2016-05-18 08:17:14'),
+(4, '测试12', 2, 1, '', 'index', 'details', '2016-06-14 03:39:03'),
+(5, '4324324', 4, 1, '4324', 'index', 'details', '2016-06-14 03:40:09'),
+(6, 'book1', 4, 1, '', 'index', 'details', '2016-06-14 03:44:21'),
+(7, 'book4', 4, 1, '', 'index', 'details', '2016-06-14 03:44:30'),
+(8, '234324', 0, 1, '4324234', 'index', 'details', '2016-06-14 05:29:16'),
+(9, 'mmmm', 0, 1, '546456', 'index', 'details', '2016-06-14 05:29:29'),
+(10, 'hgfhfgdh', 4, 1, '', 'index', 'details', '2016-06-14 05:30:07'),
+(11, 'nnn', 0, 1, '234324', 'index', 'details', '2016-06-14 05:48:29'),
+(12, 'hhhhh', 11, 1, '3213', 'index', 'details', '2016-06-14 05:48:41');
 
 -- --------------------------------------------------------
 
@@ -4066,7 +4076,7 @@ CREATE TABLE `ips_member` (
 --
 
 INSERT INTO `ips_member` (`id`, `account`, `nickname`, `password`, `bind_account`, `last_login_time`, `last_login_ip`, `login_count`, `verify`, `email`, `remark`, `create_time`, `update_time`, `status`, `type_id`, `info`, `salt`) VALUES
-(1, 'admin', '超级管理员', 'e10adc3949ba59abbe56e057f20f883e', '', '2016-06-12 17:05:51', '127.0.0.1', 224, '', '383542899@qq.com', 'test', '2013-10-15 03:48:33', '2013-10-17 11:42:28', 1, '', '', ''),
+(1, 'admin', '超级管理员', 'e10adc3949ba59abbe56e057f20f883e', '', '2016-06-14 09:30:41', '127.0.0.1', 225, '', '383542899@qq.com', 'test', '2013-10-15 03:48:33', '2013-10-17 11:42:28', 1, '', '', ''),
 (2, 'hello', '测试管理员', '48a0bbc767ef81d1daeb6ea5d4dedbca', '', '2016-05-06 15:27:36', '127.0.0.1', 1, '', '245995445@qq.com', '1212', '2013-10-17 06:45:49', '2016-05-06 15:24:53', 1, '', '', 'FqlmfEJGbzGevrCkbMBL'),
 (3, 'admin121', 'admin', '0192023a7bbd73250516f069df18b500', '', '', '', 0, '', '3835428991@qq.com', '2332432', '2014-01-14 07:26:12', '2014-01-14 15:28:50', 1, '', '', '');
 
@@ -4087,7 +4097,7 @@ CREATE TABLE `ips_session` (
 --
 
 INSERT INTO `ips_session` (`session_id`, `session_expire`, `session_data`) VALUES
-('d47d814b3f263c9a5a228f3b7905e75b', 1465740397, 0x64326439373763353834343432373164396337383031383765393366383065357c613a323a7b733a31313a227665726966795f636f6465223b733a33323a223436323665633365323333313233383864393335333530643463366239656239223b733a31313a227665726966795f74696d65223b693a313436353732323334373b7d7569647c733a313a2231223b);
+('9f58c864ea84e7a072dbc412557fe621', 1465903786, 0x64326439373763353834343432373164396337383031383765393366383065357c613a323a7b733a31313a227665726966795f636f6465223b733a33323a223836373334363133333238383434356435636638653235353933313933313139223b733a31313a227665726966795f74696d65223b693a313436353836373833363b7d7569647c733a313a2231223b);
 
 -- --------------------------------------------------------
 
@@ -4101,7 +4111,7 @@ CREATE TABLE `ips_weblog` (
   `log_action` varchar(100) NOT NULL,
   `log_sql` varchar(200) NOT NULL,
   `log_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=MyISAM AUTO_INCREMENT=1879 DEFAULT CHARSET=utf8 COMMENT='操作日志'
+) ENGINE=MyISAM AUTO_INCREMENT=1902 DEFAULT CHARSET=utf8 COMMENT='操作日志'
 /*!50100 PARTITION BY RANGE (log_id)
 (PARTITION p0 VALUES LESS THAN (2000000) ENGINE = MyISAM,
  PARTITION p1 VALUES LESS THAN (4000000) ENGINE = MyISAM,
@@ -5966,7 +5976,30 @@ INSERT INTO `ips_weblog` (`log_id`, `log_admin`, `log_action`, `log_sql`, `log_t
 (1875, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-12 09:05:53'),
 (1876, 'admin', 'Index/setting', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-12 09:06:01'),
 (1877, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-12 09:06:04'),
-(1878, 'admin', 'Group/assignAccess', 'SELECT * FROM `ips_auth_rule` WHERE `module` = ''管理员组'' ', '2016-06-12 09:06:32');
+(1878, 'admin', 'Group/assignAccess', 'SELECT * FROM `ips_auth_rule` WHERE `module` = ''管理员组'' ', '2016-06-12 09:06:32'),
+(1879, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-12 09:13:45'),
+(1880, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-12 09:16:44'),
+(1881, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-14 01:30:42'),
+(1882, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-14 01:30:42'),
+(1883, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-14 01:30:42'),
+(1884, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-14 02:16:06'),
+(1885, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-14 02:16:06'),
+(1886, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-14 02:16:06'),
+(1887, 'admin', 'Index/setting', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-14 02:19:58'),
+(1888, 'admin', 'Config/phpinfo', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-14 02:19:59'),
+(1889, 'admin', 'Config/phpinfo', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-14 02:19:59'),
+(1890, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-14 03:54:02'),
+(1891, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-14 03:54:02'),
+(1892, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-14 03:54:02'),
+(1893, 'admin', 'Category/updateHandle', 'UPDATE `ips_category` SET `cat_name`=''国内新闻'',`cat_status`=''0'',`cat_index`=''index'',`cat_details`=''details'',`cat_remark`='''' WHERE `cat_id` = 2', '2016-06-14 03:54:18'),
+(1894, 'admin', 'Category/addHandle', 'INSERT INTO `ips_category` (`cat_name`,`cat_status`,`cat_index`,`cat_details`,`cat_remark`) VALUES (''234324'',''1'',''index'',''details'',''4324234'')', '2016-06-14 05:29:16'),
+(1895, 'admin', 'Category/addHandle', 'INSERT INTO `ips_category` (`cat_name`,`cat_status`,`cat_index`,`cat_details`,`cat_remark`) VALUES (''mmmm'',''1'',''index'',''details'',''546456'')', '2016-06-14 05:29:29'),
+(1896, 'admin', 'Category/addHandle', 'INSERT INTO `ips_category` (`cat_name`,`cat_parent`,`cat_status`,`cat_index`,`cat_details`,`cat_remark`) VALUES (''hgfhfgdh'',''4'',''1'',''index'',''details'','''')', '2016-06-14 05:30:07'),
+(1897, 'admin', 'Category/addHandle', 'INSERT INTO `ips_category` (`cat_name`,`cat_parent`,`cat_status`,`cat_index`,`cat_details`,`cat_remark`) VALUES (''nnn'',''0'',''1'',''index'',''details'',''234324'')', '2016-06-14 05:48:29'),
+(1898, 'admin', 'Category/addHandle', 'INSERT INTO `ips_category` (`cat_name`,`cat_parent`,`cat_status`,`cat_index`,`cat_details`,`cat_remark`) VALUES (''hhhhh'',''11'',''1'',''index'',''details'',''3213'')', '2016-06-14 05:48:41'),
+(1899, 'admin', 'Article/addHandle', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-14 06:15:16'),
+(1900, 'admin', 'Article/addHandle', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-14 06:15:40'),
+(1901, 'admin', 'Article/addHandle', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-14 06:16:52');
 
 -- --------------------------------------------------------
 
@@ -6357,7 +6390,7 @@ ALTER TABLE `ips_autoperform`
 -- AUTO_INCREMENT for table `ips_category`
 --
 ALTER TABLE `ips_category`
-  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `ips_countries`
 --
@@ -6377,7 +6410,7 @@ ALTER TABLE `ips_member`
 -- AUTO_INCREMENT for table `ips_weblog`
 --
 ALTER TABLE `ips_weblog`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1879;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1902;
 --
 -- AUTO_INCREMENT for table `ips_zones`
 --

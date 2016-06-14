@@ -6,24 +6,18 @@
         <input type="hidden" name="cat_id" value="{$cat_id}" />
         <table class="uk-table">
             <tr>
-                <td width=100>#</td>
-                <td>
-                    {$cat_id}
-                </td>
-            </tr>
-            <tr>
-                <td>分类名</td>
+                <td width=100>分类名</td>
                 <td>
                     <input type="text" name="cat_name" required value="{$cat_name}" />
                 </td>
             </tr>
             <tr>
-                <td>类型
-                </td>
+                <td>父类</td>
                 <td>
-                    <select name="cat_type">
-                        <volist name=":category_type()" id="vo">
-                            <option value="{$key}" <eq name="cat_type" value="$key">selected</eq> >{$vo}</option>
+                    <select name="cat_parent" required>
+                        <option value="0">顶级</option>
+                        <volist name=":getCategoryList()" id="vo">
+                            <option <eq name="vo.cat_id" value="$cat_parent">selected</eq> value="{$vo.cat_id}">{$vo.level|levelshow}{$vo.cat_name}</option>
                         </volist>
                     </select>
                 </td>

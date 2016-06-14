@@ -23,8 +23,8 @@
                 <td>
                     <select name="doc_cat" required>
                         <option value="">--</option>
-                        <volist name=":getObjectList('category','cat_type=1')" id="vo">
-                            <option value="{$vo.cat_id}" <eq name="vo.cat_id" value="$doc_cat">selected</eq>>{$vo.cat_name}</option>
+                        <volist name=":getCategoryList()" id="vo">
+                            <option value="{$vo.cat_id}" <eq name="vo.cat_id" value="$doc_cat">selected</eq>>{$vo.level|levelshow}{$vo.cat_name}</option>
                         </volist>
                     </select>
                     * 没有分类的话，可先去分类里创建
