@@ -2,9 +2,9 @@
 -- version 4.4.10
 -- http://www.phpmyadmin.net
 --
--- Host: localhost:3306
--- Generation Time: 2016-06-14 08:48:06
--- 服务器版本： 5.5.42
+-- Host: localhost:1433
+-- Generation Time: Jun 14, 2016 at 06:44 PM
+-- Server version: 5.5.42
 -- PHP Version: 5.6.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- 表的结构 `ips_areas`
+-- Table structure for table `ips_areas`
 --
 
 CREATE TABLE `ips_areas` (
@@ -36,7 +36,7 @@ CREATE TABLE `ips_areas` (
 ) ENGINE=MyISAM AUTO_INCREMENT=659008 DEFAULT CHARSET=utf8 COMMENT='地区信息';
 
 --
--- 转存表中的数据 `ips_areas`
+-- Dumping data for table `ips_areas`
 --
 
 INSERT INTO `ips_areas` (`area_id`, `parent_id`, `area_name`, `sort`, `isactive`, `level`) VALUES
@@ -3559,13 +3559,13 @@ INSERT INTO `ips_areas` (`area_id`, `parent_id`, `area_name`, `sort`, `isactive`
 -- --------------------------------------------------------
 
 --
--- 表的结构 `ips_article`
+-- Table structure for table `ips_article`
 --
 
 CREATE TABLE `ips_article` (
   `doc_id` int(11) NOT NULL,
   `doc_title` varchar(200) NOT NULL,
-  `doc_property` varchar(50) NOT NULL COMMENT '标题属性',
+  `doc_property` varchar(200) NOT NULL COMMENT '标题属性',
   `doc_cat` int(11) NOT NULL,
   `doc_desc` varchar(300) NOT NULL,
   `doc_keyword` varchar(50) NOT NULL,
@@ -3580,20 +3580,22 @@ CREATE TABLE `ips_article` (
   `doc_label` varchar(100) NOT NULL,
   `doc_sort` int(11) NOT NULL,
   `doc_update_time` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `ips_article`
+-- Dumping data for table `ips_article`
 --
 
 INSERT INTO `ips_article` (`doc_id`, `doc_title`, `doc_property`, `doc_cat`, `doc_desc`, `doc_keyword`, `doc_content`, `doc_status`, `doc_dir`, `doc_img`, `doc_author`, `doc_time`, `doc_source`, `doc_hit`, `doc_label`, `doc_sort`, `doc_update_time`) VALUES
 (1, '不问苍生问鬼神 蔡英文就职典礼彩排如庙会', '', 2, '不问苍生问鬼神 蔡英文就职典礼彩排如庙会', '不问苍生问鬼神 蔡英文就职典礼彩排如庙会', '&lt;h1 id=&quot;4g_title&quot;&gt;不问苍生问鬼神 蔡英文就职典礼彩排如庙会&lt;/h1&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', 1, '2016-05-18/', '573c2fc8afe03.png', '', '2016-05-18 09:03:04', '', 33, '', 10, '2016-05-18 00:00:00'),
-(2, '全球最大邮轮抵达英国 比泰坦尼克号长100米全球最大邮轮抵达英国 比泰坦尼克号长100米全球最大邮轮抵达英国 比泰坦尼克号长100米', '', 2, '32432', '432', '&lt;p&gt;&lt;span id=&quot;title&quot;&gt;全球最大邮轮抵达英国 比泰坦尼克号长100米&lt;/span&gt;&lt;/p&gt;', 1, '2016-05-18/', '573c3019565b1.png', '', '2016-05-18 09:04:25', '', 66, '', 10, '2016-05-18 00:00:00');
+(2, '全球最大邮轮抵达英国 比泰坦尼克号长100米全球最大邮轮抵达英国 比泰坦尼克号长100米全球最大邮轮抵达英国 比泰坦尼克号长100米', '', 2, '32432', '432', '&lt;p&gt;&lt;span id=&quot;title&quot;&gt;全球最大邮轮抵达英国 比泰坦尼克号长100米&lt;/span&gt;&lt;/p&gt;', 1, '2016-05-18/', '573c3019565b1.png', '', '2016-05-18 09:04:25', '', 66, '', 10, '2016-05-18 00:00:00'),
+(3, '423432哦哦哦哦', 'a:4:{i:0;s:1:"1";i:1;s:1:"2";i:2;s:1:"3";i:3;s:1:"4";}', 9, '32432', '4324', '&lt;p&gt;432&lt;br/&gt;&lt;/p&gt;', 1, '', '', '', '2016-06-14 16:43:02', '', 57, '', 10, '2016-06-14 00:00:00'),
+(4, '345324324', 'a:5:{i:0;s:1:"1";i:1;s:1:"2";i:2;s:1:"3";i:3;s:1:"4";i:4;s:1:"5";}', 12, '432432', '', '&lt;p&gt;43243&lt;br/&gt;&lt;/p&gt;', 1, '', '', '', '2016-06-14 16:42:52', '', 3, '', 10, '2016-06-14 00:00:00');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `ips_auth_group`
+-- Table structure for table `ips_auth_group`
 --
 
 CREATE TABLE `ips_auth_group` (
@@ -3604,7 +3606,7 @@ CREATE TABLE `ips_auth_group` (
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `ips_auth_group`
+-- Dumping data for table `ips_auth_group`
 --
 
 INSERT INTO `ips_auth_group` (`id`, `title`, `status`, `rules`) VALUES
@@ -3613,7 +3615,7 @@ INSERT INTO `ips_auth_group` (`id`, `title`, `status`, `rules`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `ips_auth_group_access`
+-- Table structure for table `ips_auth_group_access`
 --
 
 CREATE TABLE `ips_auth_group_access` (
@@ -3622,7 +3624,7 @@ CREATE TABLE `ips_auth_group_access` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `ips_auth_group_access`
+-- Dumping data for table `ips_auth_group_access`
 --
 
 INSERT INTO `ips_auth_group_access` (`uid`, `group_id`) VALUES
@@ -3631,7 +3633,7 @@ INSERT INTO `ips_auth_group_access` (`uid`, `group_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `ips_auth_rule`
+-- Table structure for table `ips_auth_rule`
 --
 
 CREATE TABLE `ips_auth_rule` (
@@ -3645,7 +3647,7 @@ CREATE TABLE `ips_auth_rule` (
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `ips_auth_rule`
+-- Dumping data for table `ips_auth_rule`
 --
 
 INSERT INTO `ips_auth_rule` (`id`, `name`, `title`, `type`, `status`, `condition`, `module`) VALUES
@@ -3657,7 +3659,7 @@ INSERT INTO `ips_auth_rule` (`id`, `name`, `title`, `type`, `status`, `condition
 -- --------------------------------------------------------
 
 --
--- 表的结构 `ips_autoperform`
+-- Table structure for table `ips_autoperform`
 --
 
 CREATE TABLE `ips_autoperform` (
@@ -3670,7 +3672,7 @@ CREATE TABLE `ips_autoperform` (
 ) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='自动处理程序列表';
 
 --
--- 转存表中的数据 `ips_autoperform`
+-- Dumping data for table `ips_autoperform`
 --
 
 INSERT INTO `ips_autoperform` (`id`, `name`, `remark`, `isactive`, `email`, `auto_time`) VALUES
@@ -3686,7 +3688,7 @@ INSERT INTO `ips_autoperform` (`id`, `name`, `remark`, `isactive`, `email`, `aut
 -- --------------------------------------------------------
 
 --
--- 表的结构 `ips_category`
+-- Table structure for table `ips_category`
 --
 
 CREATE TABLE `ips_category` (
@@ -3701,7 +3703,7 @@ CREATE TABLE `ips_category` (
 ) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='文章分类表';
 
 --
--- 转存表中的数据 `ips_category`
+-- Dumping data for table `ips_category`
 --
 
 INSERT INTO `ips_category` (`cat_id`, `cat_name`, `cat_parent`, `cat_status`, `cat_remark`, `cat_index`, `cat_details`, `cat_time`) VALUES
@@ -3720,7 +3722,7 @@ INSERT INTO `ips_category` (`cat_id`, `cat_name`, `cat_parent`, `cat_status`, `c
 -- --------------------------------------------------------
 
 --
--- 表的结构 `ips_config`
+-- Table structure for table `ips_config`
 --
 
 CREATE TABLE `ips_config` (
@@ -3731,7 +3733,7 @@ CREATE TABLE `ips_config` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='系统配置列表';
 
 --
--- 转存表中的数据 `ips_config`
+-- Dumping data for table `ips_config`
 --
 
 INSERT INTO `ips_config` (`conf_name`, `conf_value`, `conf_remark`, `conf_time`) VALUES
@@ -3758,7 +3760,7 @@ INSERT INTO `ips_config` (`conf_name`, `conf_value`, `conf_remark`, `conf_time`)
 -- --------------------------------------------------------
 
 --
--- 表的结构 `ips_countries`
+-- Table structure for table `ips_countries`
 --
 
 CREATE TABLE `ips_countries` (
@@ -3770,7 +3772,7 @@ CREATE TABLE `ips_countries` (
 ) ENGINE=MyISAM AUTO_INCREMENT=241 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `ips_countries`
+-- Dumping data for table `ips_countries`
 --
 
 INSERT INTO `ips_countries` (`countries_id`, `countries_name`, `countries_iso_code_2`, `countries_iso_code_3`, `address_format_id`) VALUES
@@ -4016,7 +4018,7 @@ INSERT INTO `ips_countries` (`countries_id`, `countries_name`, `countries_iso_co
 -- --------------------------------------------------------
 
 --
--- 表的结构 `ips_document`
+-- Table structure for table `ips_document`
 --
 
 CREATE TABLE `ips_document` (
@@ -4038,7 +4040,7 @@ CREATE TABLE `ips_document` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `ips_document`
+-- Dumping data for table `ips_document`
 --
 
 INSERT INTO `ips_document` (`doc_id`, `doc_title`, `doc_cat`, `doc_desc`, `doc_keyword`, `doc_content`, `doc_unique`, `doc_status`, `doc_dir`, `doc_img`, `doc_time`, `doc_source`, `doc_tpl`, `doc_sort`, `doc_update_time`) VALUES
@@ -4048,7 +4050,7 @@ INSERT INTO `ips_document` (`doc_id`, `doc_title`, `doc_cat`, `doc_desc`, `doc_k
 -- --------------------------------------------------------
 
 --
--- 表的结构 `ips_member`
+-- Table structure for table `ips_member`
 --
 
 CREATE TABLE `ips_member` (
@@ -4072,18 +4074,18 @@ CREATE TABLE `ips_member` (
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
--- 转存表中的数据 `ips_member`
+-- Dumping data for table `ips_member`
 --
 
 INSERT INTO `ips_member` (`id`, `account`, `nickname`, `password`, `bind_account`, `last_login_time`, `last_login_ip`, `login_count`, `verify`, `email`, `remark`, `create_time`, `update_time`, `status`, `type_id`, `info`, `salt`) VALUES
-(1, 'admin', '超级管理员', 'e10adc3949ba59abbe56e057f20f883e', '', '2016-06-14 09:30:41', '127.0.0.1', 225, '', '383542899@qq.com', 'test', '2013-10-15 03:48:33', '2013-10-17 11:42:28', 1, '', '', ''),
+(1, 'admin', '超级管理员', 'e10adc3949ba59abbe56e057f20f883e', '', '2016-06-14 22:40:53', '127.0.0.1', 226, '', '383542899@qq.com', 'test', '2013-10-15 03:48:33', '2013-10-17 11:42:28', 1, '', '', ''),
 (2, 'hello', '测试管理员', '48a0bbc767ef81d1daeb6ea5d4dedbca', '', '2016-05-06 15:27:36', '127.0.0.1', 1, '', '245995445@qq.com', '1212', '2013-10-17 06:45:49', '2016-05-06 15:24:53', 1, '', '', 'FqlmfEJGbzGevrCkbMBL'),
 (3, 'admin121', 'admin', '0192023a7bbd73250516f069df18b500', '', '', '', 0, '', '3835428991@qq.com', '2332432', '2014-01-14 07:26:12', '2014-01-14 15:28:50', 1, '', '', '');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `ips_session`
+-- Table structure for table `ips_session`
 --
 
 CREATE TABLE `ips_session` (
@@ -4093,16 +4095,16 @@ CREATE TABLE `ips_session` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `ips_session`
+-- Dumping data for table `ips_session`
 --
 
 INSERT INTO `ips_session` (`session_id`, `session_expire`, `session_data`) VALUES
-('9f58c864ea84e7a072dbc412557fe621', 1465903786, 0x64326439373763353834343432373164396337383031383765393366383065357c613a323a7b733a31313a227665726966795f636f6465223b733a33323a223836373334363133333238383434356435636638653235353933313933313139223b733a31313a227665726966795f74696d65223b693a313436353836373833363b7d7569647c733a313a2231223b);
+('7c6598ceee7e77ef80a7312cd930a26f', 1465940591, 0x64326439373763353834343432373164396337383031383765393366383065357c613a323a7b733a31313a227665726966795f636f6465223b733a33323a223436663836316637353636633832393439393337363634616534613165396631223b733a31313a227665726966795f74696d65223b693a313436353931353234393b7d7569647c733a313a2231223b);
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `ips_weblog`
+-- Table structure for table `ips_weblog`
 --
 
 CREATE TABLE `ips_weblog` (
@@ -4111,7 +4113,7 @@ CREATE TABLE `ips_weblog` (
   `log_action` varchar(100) NOT NULL,
   `log_sql` varchar(200) NOT NULL,
   `log_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=MyISAM AUTO_INCREMENT=1902 DEFAULT CHARSET=utf8 COMMENT='操作日志'
+) ENGINE=MyISAM AUTO_INCREMENT=1913 DEFAULT CHARSET=utf8 COMMENT='操作日志'
 /*!50100 PARTITION BY RANGE (log_id)
 (PARTITION p0 VALUES LESS THAN (2000000) ENGINE = MyISAM,
  PARTITION p1 VALUES LESS THAN (4000000) ENGINE = MyISAM,
@@ -4121,7 +4123,7 @@ CREATE TABLE `ips_weblog` (
  PARTITION p5 VALUES LESS THAN MAXVALUE ENGINE = MyISAM) */;
 
 --
--- 转存表中的数据 `ips_weblog`
+-- Dumping data for table `ips_weblog`
 --
 
 INSERT INTO `ips_weblog` (`log_id`, `log_admin`, `log_action`, `log_sql`, `log_time`) VALUES
@@ -5999,12 +6001,23 @@ INSERT INTO `ips_weblog` (`log_id`, `log_admin`, `log_action`, `log_sql`, `log_t
 (1898, 'admin', 'Category/addHandle', 'INSERT INTO `ips_category` (`cat_name`,`cat_parent`,`cat_status`,`cat_index`,`cat_details`,`cat_remark`) VALUES (''hhhhh'',''11'',''1'',''index'',''details'',''3213'')', '2016-06-14 05:48:41'),
 (1899, 'admin', 'Article/addHandle', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-14 06:15:16'),
 (1900, 'admin', 'Article/addHandle', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-14 06:15:40'),
-(1901, 'admin', 'Article/addHandle', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-14 06:16:52');
+(1901, 'admin', 'Article/addHandle', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-14 06:16:52'),
+(1902, 'admin', 'Index/top', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-14 14:40:56'),
+(1903, 'admin', 'Index/left', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-14 14:40:56'),
+(1904, 'admin', 'Index/right', 'SELECT * FROM `ips_member` WHERE `id` = 1 LIMIT 1  ', '2016-06-14 14:40:56'),
+(1905, 'admin', 'Article/addHandle', 'INSERT INTO `ips_article` (`doc_title`,`doc_property`,`doc_cat`,`doc_desc`,`doc_keyword`,`doc_status`,`doc_label`,`doc_hit`,`doc_sort`,`doc_source`,`doc_update_time`,`doc_content`) VALUES (''423432哦哦哦哦', '2016-06-14 15:51:40'),
+(1906, 'admin', 'Article/addHandle', 'INSERT INTO `ips_article` (`doc_title`,`doc_property`,`doc_cat`,`doc_desc`,`doc_keyword`,`doc_status`,`doc_label`,`doc_hit`,`doc_sort`,`doc_source`,`doc_update_time`,`doc_content`) VALUES (''345324324''', '2016-06-14 15:56:00'),
+(1907, 'admin', 'Article/updateHandle', 'UPDATE `ips_article` SET `doc_title`=''345324324'',`doc_property`=''a:3:{i:0;s:1:\\"1\\";i:1;s:1:\\"4\\";i:2;s:1:\\"5\\";}'',`doc_cat`=''12'',`doc_desc`=''432432'',`doc_keyword`='''',`doc_status`=''1'',`doc_label`='''',`', '2016-06-14 16:16:59'),
+(1908, 'admin', 'Article/updateHandle', 'UPDATE `ips_article` SET `doc_title`=''345324324'',`doc_property`=''a:3:{i:0;s:1:\\"1\\";i:1;s:1:\\"4\\";i:2;s:1:\\"5\\";}'',`doc_cat`=''12'',`doc_desc`=''432432'',`doc_keyword`='''',`doc_status`=''1'',`doc_label`='''',`', '2016-06-14 16:17:10'),
+(1909, 'admin', 'Article/updateHandle', 'UPDATE `ips_article` SET `doc_title`=''345324324'',`doc_property`=''a:3:{i:0;s:1:\\"1\\";i:1;s:1:\\"3\\";i:2;s:1:\\"4\\";}'',`doc_cat`=''12'',`doc_desc`=''432432'',`doc_keyword`='''',`doc_status`=''1'',`doc_label`='''',`', '2016-06-14 16:17:23'),
+(1910, 'admin', 'Article/updateHandle', 'UPDATE `ips_article` SET `doc_title`=''345324324'',`doc_property`=''a:4:{i:0;s:1:\\"1\\";i:1;s:1:\\"2\\";i:2;s:1:\\"3\\";i:3;s:1:\\"4\\";}'',`doc_cat`=''12'',`doc_desc`=''432432'',`doc_keyword`='''',`doc_status`=''1'',`d', '2016-06-14 16:19:10'),
+(1911, 'admin', 'Article/updateHandle', 'UPDATE `ips_article` SET `doc_title`=''345324324'',`doc_property`=''a:5:{i:0;s:1:\\"1\\";i:1;s:1:\\"2\\";i:2;s:1:\\"3\\";i:3;s:1:\\"4\\";i:4;s:1:\\"5\\";}'',`doc_cat`=''12'',`doc_desc`=''432432'',`doc_keyword`='''',`doc_', '2016-06-14 16:42:52'),
+(1912, 'admin', 'Article/updateHandle', 'UPDATE `ips_article` SET `doc_title`=''423432哦哦哦哦'',`doc_property`=''a:4:{i:0;s:1:\\"1\\";i:1;s:1:\\"2\\";i:2;s:1:\\"3\\";i:3;s:1:\\"4\\";}'',`doc_cat`=''9'',`doc_desc`=''32432'',`doc_keyword`=''4324'',`doc_status`=''1''', '2016-06-14 16:43:02');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `ips_zones`
+-- Table structure for table `ips_zones`
 --
 
 CREATE TABLE `ips_zones` (
@@ -6015,7 +6028,7 @@ CREATE TABLE `ips_zones` (
 ) ENGINE=MyISAM AUTO_INCREMENT=236 DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `ips_zones`
+-- Dumping data for table `ips_zones`
 --
 
 INSERT INTO `ips_zones` (`zone_id`, `zone_country_id`, `zone_code`, `zone_name`) VALUES
@@ -6370,7 +6383,7 @@ ALTER TABLE `ips_areas`
 -- AUTO_INCREMENT for table `ips_article`
 --
 ALTER TABLE `ips_article`
-  MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `ips_auth_group`
 --
@@ -6410,7 +6423,7 @@ ALTER TABLE `ips_member`
 -- AUTO_INCREMENT for table `ips_weblog`
 --
 ALTER TABLE `ips_weblog`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1902;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1913;
 --
 -- AUTO_INCREMENT for table `ips_zones`
 --
