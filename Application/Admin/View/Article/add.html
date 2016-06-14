@@ -15,6 +15,16 @@
                 <td width=150>文章标题</td>
                 <td>
                     <input type="text" name="doc_title" required />
+                    <label>
+                        <input type='checkbox' name='doc_property[]' value="1">加粗 </label>
+                    <label>
+                        <input type='checkbox' name='doc_property[]' value="2">红名</label>
+                    <label>
+                        <input type='checkbox' name='doc_property[]' value="3">下划线</label>
+                    <label>
+                        <input type='checkbox' name='doc_property[]' value="4">删除线</label>
+                    <label>
+                        <input type='checkbox' name='doc_property[]' value="5">斜体</label>
                 </td>
             </tr>
             <tr>
@@ -22,8 +32,8 @@
                 <td>
                     <select name="doc_cat" required>
                         <option value="">--</option>
-                        <volist name=":getObjectList('category','cat_type=2')" id="vo">
-                            <option value="{$vo.cat_id}">{$vo.cat_name}</option>
+                        <volist name=":getCategoryList()" id="vo">
+                            <option value="{$vo.cat_id}">{$vo.level|levelshow}{$vo.cat_name}</option>
                         </volist>
                     </select>
                     * 没有分类的话，可先去分类里创建

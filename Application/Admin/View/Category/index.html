@@ -4,32 +4,13 @@
     <button type="button" class="uk-button uk-button-success" data-uk-modal="{target:'#myModal',center:true}">
         {$Think.lang.add_new}
     </button>
+    <a href="__CONTROLLER__/clearCache/category" class="uk-button">刷新缓存</a>
 </p>
-<form class="uk-form">
-    <div class="uk-grid">
-        <div class="uk-width-1-4">分类名:
-            <input type="text" name="log_admin" placeholder="" class="uk-width-1-1">
-        </div>
-        <div class="uk-width-1-4">类型:
-            <select name="cat_type">
-                <option value="">--</option>
-                <volist name=":category_type()" id="vo">
-                    <option value="{$key}">{$vo}</option>
-                </volist>
-            </select>
-        </div>
-    </div>
-    <p>
-        <button type="submit" class="uk-button uk-button-danger">{$Think.lang.search}</button>
-    </p>
-</form>
 {$page}
 <div class="uk-overflow-container">
     <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
         <thead>
-            <th>#</th>
             <th>分类名</th>
-            <th>类型</th>
             <th>是否可用</th>
             <th>模板</th>
             <th>添加时间</th>
@@ -38,9 +19,7 @@
         <tbody>
             <volist name="list" id="vo">
                 <tr>
-                    <td><a href="__CONTROLLER__/details/{$vo.cat_id}">{$vo.cat_id}</a></td>
-                    <td>{$vo.cat_name}</td>
-                    <td>{$vo.cat_type|category_type}</td>
+                    <td>{$vo.level|levelshow}<a href="__CONTROLLER__/details/{$vo.cat_id}">{$vo.cat_name}</a></td>
                     <td>{$vo.cat_status|displayIcon}</td>
                     <td>{$vo.cat_index}/{$vo.cat_details}</td>
                     <td>{$vo.cat_time}</td>
@@ -53,7 +32,6 @@
         </tbody>
     </table>
 </div>
-{$page}
 <div style="clear:both"></div>
 <!-- Modal -->
 <div class="uk-modal" id="myModal">
@@ -69,12 +47,12 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>类型
-                    </td>
+                    <td>父类</td>
                     <td>
-                        <select name="cat_type">
-                            <volist name=":category_type()" id="vo">
-                                <option value="{$key}">{$vo}</option>
+                        <select name="cat_parent" required>
+                            <option value="0">顶级</option>
+                            <volist name=":getCategoryList()" id="vo">
+                                <option value="{$vo.cat_id}">{$vo.level|levelshow}{$vo.cat_name}</option>
                             </volist>
                         </select>
                     </td>
