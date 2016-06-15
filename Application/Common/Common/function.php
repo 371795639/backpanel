@@ -11,8 +11,36 @@ if (is_readable($file_local) == true) {
 }
 
 /**
+ * 根据标题属性来显示标题
+ * @param $title 显示的标题内容
+ * @param $property 属性的序列化字符串
+ * @return 返回根据属性拼接好的标题字符串
+ */
+function displayTitle($title, $property) {
+	$arr = unserialize($property);
+	$str = $title;
+	if (in_array(1, $arr)) {
+		$str = "<b>" . $str . "</b>";
+	}
+	if (in_array(2, $arr)) {
+		$str = "<font color=red>" . $str . "</font>";
+	}
+	if (in_array(3, $arr)) {
+		$str = "<u>" . $str . "</u>";
+	}
+	if (in_array(4, $arr)) {
+		$str = "<del>" . $str . "</del>";
+	}
+	if (in_array(5, $arr)) {
+		$str = "<i>" . $str . "</i>";
+	}
+	return $str;
+}
+
+/**
  * 显示分隔符
  * @param $num int 显示分隔符的数量
+ * @param $space string 分隔符样式
  */
 function levelShow($num = 0, $space = '|--&nbsp;') {
 	$str = "";
