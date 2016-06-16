@@ -31,10 +31,10 @@ abstract class CommonController extends BaseController {
 			$this->error(L('access_deny'));
 		}
 
-		$this->authInfo = M('member')->find(session('uid'));
+		$this->authInfo = D('MemberView')->find(session('uid'));
 		$this->num = $this->web_config['web_table_list_count'] ? $this->web_config['web_table_list_count'] : 35;
 		$this->assign('authInfo', $this->authInfo);
-
+		//dump($this->authInfo);
 	}
 
 	//首页列表

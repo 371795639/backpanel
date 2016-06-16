@@ -26,6 +26,17 @@
             </td>
         </tr>
         <tr>
+            <td>编辑组</td>
+            <td>
+                <select name="type_id">
+                    <option value="">--</option>
+                    <volist name=":getObjectList('editor')" id="vo">
+                        <option <eq name='vo.ed_id' value="$type_id">selected</eq> value="{$vo.ed_id}">{$vo.ed_name}</option>
+                    </volist>
+                </select>
+            </td>
+        </tr>
+        <tr>
             <td>{$Think.lang.remark}</td>
             <td>
                 <textarea class="form-control" name="remark">{$remark}</textarea>

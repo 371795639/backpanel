@@ -7,6 +7,7 @@ class MemberController extends CommonController {
 	public function _initialize() {
 		parent::_initialize();
 		$this->model = "member";
+		$this->model_view = "MemberView";
 		$this->key = "id";
 		$this->title_index = L('member_index');
 		$this->title_details = L('member_details');

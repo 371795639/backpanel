@@ -33,6 +33,12 @@
     .uk-table-hover {
         min-width: 1280px;
     }
+    
+    label.error {
+        color: red;
+        display: block;
+        font-size: 12px;
+    }
     </style>
     <script style="javascript">
     $(function() {
@@ -66,7 +72,7 @@
         chk_value.length ? location.href = url + "/" + chk_value : UIkit.modal.alert("没有选择任何项目！");
     }
 
-    //确认删除	
+    //确认删除  
     function confirmDelete(url, notice) {
         if (notice === undefined) notice = "{$Think.lang.confirm_delete}";
         UIkit.modal.confirm(notice, function() {
