@@ -32,7 +32,12 @@ abstract class CommonController extends BaseController {
 		}
 
 		$this->authInfo = D('MemberView')->find(session('uid'));
+		if (in_array(session("uid"), C("AUTH_CONFIG.AUTH_ADMIN"))) {
+			$this->authInfo['type_id'] = "";
+		}
+
 		$this->num = $this->web_config['web_table_list_count'] ? $this->web_config['web_table_list_count'] : 35;
+
 		$this->assign('authInfo', $this->authInfo);
 		//dump($this->authInfo);
 	}
@@ -55,7 +60,9 @@ abstract class CommonController extends BaseController {
 		$accute_arr = array('doc_cat' => I("doc_cat"));
 		$cookie_arr = array();
 		$con = searchCon($mist_arr, $accute_arr, $cookie_arr);
-
+		if ($this->authInfo['type_id']) {
+			$con['doc_ed_id'] = $this->authInfo['type_id'];
+		}
 		$this->model_view ? $oop = D($this->model_view) : $oop = M($this->model);
 		$data = pageInfo($oop, $this->key . " desc", $con, $this->num);
 		$this->assign("list", $data['list']);
@@ -109,7 +116,7 @@ abstract class CommonController extends BaseController {
 	}
 
 	//cms保存
-	protected function cms_udpateHandle() {
+	protected function cms_updateHandle() {
 		$oop = M($this->model);
 		$oop->create();
 
@@ -124,17 +131,17 @@ abstract class CommonController extends BaseController {
 		//dump(I());
 		//dump($result);exit;
 		try {
-
+			$oop->doc_property = serialize(I('doc_property'));
+			$oop->doc_ed_id = $this->authInfo['type_id'] . "";
 			if ($oop->save()) {
-				$this->success(L("update_success"));
+				$this->success(L('update_success'));
 			} else {
-				$this->error(L("update_failed"));
+				$this->error(L('update_failed'));
 			}
-
 		} catch (\Exception $e) {
 			//dump($e);exit;
 			if ($e->getCode() == 23000) {
-				$this->error(L("unique_error"));
+				$this->error(L('unique_error'));
 			}
 		}
 	}
@@ -178,17 +185,17 @@ abstract class CommonController extends BaseController {
 		//dump(I());
 		//dump($result);exit;
 		try {
-
+			$oop->doc_property = serialize(I('doc_property'));
+			$oop->doc_ed_id = $this->authInfo['type_id'] . "";
 			if ($oop->add()) {
-				$this->success(L("add_success"));
+				$this->success(L('add_success'));
 			} else {
-				$this->error(L("add_failed"));
+				$this->error(L('add_failed'));
 			}
-
 		} catch (\Exception $e) {
 			//dump($e);exit;
 			if ($e->getCode() == 23000) {
-				$this->error(L("unique_error"));
+				$this->error(L('unique_error'));
 			}
 		}
 	}

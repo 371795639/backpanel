@@ -24,4 +24,17 @@ class DocumentController extends CommonController {
 		parent::cms_updateHandle();
 	}
 
+	public function deleteHandle() {
+		//查看是否属于自己的文章
+		if ($this->authInfo['type_id']) {
+			$con['doc_ed_id'] = $this->authInfo['type_id'];
+			$con['doc_id'] = I("path.2");
+			$list = M($this->model)->where($con)->find();
+			if (!$list) {
+				$this->error("不允许删除，操作禁止。");
+			}
+		}
+		parent::deleteHandle();
+	}
+
 }
