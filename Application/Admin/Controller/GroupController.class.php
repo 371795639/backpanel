@@ -25,6 +25,8 @@ class GroupController extends CommonController {
 		$oop = M('authRule');
 		$list = $oop->group("module")->select();
 
+		//dump($list);
+
 		//$result = group_to_rule(I("id"), "管理员");
 		//dump($result);
 		//dump($list);

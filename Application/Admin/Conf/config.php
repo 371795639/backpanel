@@ -29,4 +29,5 @@ return [
 		'web_cms_cat', //CMS分类
 		"web_lang", //平台支持的多语言列表
 	),
+
 ];
