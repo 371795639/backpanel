@@ -2,7 +2,7 @@
 return array(
 	/*网站的基础配置内容*/
 	//网站名
-	"web_name" => "Altercards",
+	"web_name" => "iPasspay",
 	//网站标题
 	"web_title" => "稳定而安全的第三方支付方案提供商",
 	//网站描述

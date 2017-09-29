@@ -1,6 +1,8 @@
 {
     "require": {
         "phpmailer/phpmailer": "^5.2",
-        "ifsnop/mysqldump-php": "^2.1"
+        "ifsnop/mysqldump-php": "^2.1",
+        "sonata-project/google-authenticator": "1.1",
+        "zhuzhichao/ip-location-zh": "^2.2"
     }
 }
