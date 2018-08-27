@@ -32,6 +32,14 @@ class PublicController extends BaseController {
 			$this->error(L("error_pwd"));
 		}
 
+				//二因子验证
+		if ($this->web_config['web_2fa_code']) {
+			$g = new \Google\Authenticator\GoogleAuthenticator();
+			if (!$g->checkCode($authInfo['verify'], I("twofa_code"))) {
+				$this->error("002非法的登录！");
+			}
+		}
+
 		session("uid", $authInfo['id']);
 		//dump($_SESSION);exit;
 		$authInfo['last_login_time'] = date('Y-m-d H:i:s');

@@ -1,0 +1,23 @@
+<li <eq name="CONTROLLER_NAME" value="Merchant">class="tm-uk-active"</eq>> <a href="__MODULE__/Merchant/index">{$Think.lang.myaccount}</a></li>
+<li <eq name="CONTROLLER_NAME" value="Orders">class="tm-uk-active"</eq> > <a href="__MODULE__/Orders/index">{$Think.lang.transactions}</a> </li>
+<li <eq name="CONTROLLER_NAME" value="Rolling">class="tm-uk-active"</eq> > <a href="__MODULE__/Rolling/index">{$Think.lang.rolling}</a> </li>
+<li <eq name="CONTROLLER_NAME" value="Site">class="tm-uk-active"</eq>> <a href="__MODULE__/Site/index">{$Think.lang.my_website}</a> </li>
+<li <eq name="CONTROLLER_NAME" value="Transfer">class="tm-uk-active"</eq>> <a href="__MODULE__/Transfer/index">{$Think.lang.send_money}</a> </li>
+<li <eq name="CONTROLLER_NAME" value="Statement">class="tm-uk-active"</eq>> <a href="__MODULE__/Statement/index">{$Think.lang.my_statement}</a> </li>
+<eq name="brand_mode" value="1">
+    <li <eq name="CONTROLLER_NAME" value="Notice">class="tm-uk-active"</eq>> <a href="__MODULE__/Notice/index">{$Think.lang.notice} &nbsp;{:displayNotice($merchant_info['mh_id'])}</a>
+</li>
+</eq>
+<li <eq name="CONTROLLER_NAME" value="Delivery">class="tm-uk-active"</eq>><a href="__MODULE__/Delivery/index">{$Think.lang.delivery}</a> </li>
+<li class="uk-nav-divider"></li>
+<li <eq name="CONTROLLER_NAME" value="Chargeback">class="tm-uk-active"</eq>><a href="__MODULE__/Chargeback/index">{$Think.lang.my_cb}</a> </li>
+<li <eq name="CONTROLLER_NAME" value="Highrisk">class="tm-uk-active"</eq>><a href="__MODULE__/Highrisk/index">{$Think.lang.my_highrisk}</a> </li>
+<li <eq name="CONTROLLER_NAME" value="Riskcontrol">class="tm-uk-active"</eq>><a href="__MODULE__/Riskcontrol/index">{$Think.lang.risk_control}</a> </li>
+<eq name="merchant_info.mh_isvt" value="1">
+    <li <eq name="CONTROLLER_NAME" value="Vt">class="tm-uk-active"</eq>><a href="__MODULE__/Vt/index">Virtual Terminal</a> </li>
+</eq>
+<eq name="brand_mode" value="1">
+    <eq name="merchant_info.mh_child_status" value="1">
+        <li <eq name="CONTROLLER_NAME" value="Child">class="tm-uk-active"</eq>><a href="__MODULE__/Child/index">{$Think.lang.child_account}</a> </li>
+</eq>
+</eq>

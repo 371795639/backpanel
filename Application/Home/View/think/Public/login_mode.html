@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="{:LANG_SET}" ng-app="App">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>iPasspay-为国际卡收单服务提供商及普通商户提供有价值的事后抗欺诈，抗拒付服务</title>
+    <!-- UIKIT -->
+    <load href="__PUBLIC__/{:UIKIT}/css/uikit.min.css" />
+    <load href="__PUBLIC__/Home/css/common.css" />
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <load href="__PUBLIC__/Common/js/jquery-1.11.2.min.js" />
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <load href="__PUBLIC__/{:UIKIT}/js/uikit.min.js" />
+    <load href="__PUBLIC__/Common/dist/jquery.validate.min.js" />
+    <load href="__PUBLIC__/{:ANGULARJS}/angular.min.js" />
+    <load href="__PUBLIC__/App/CommonDirective.js" />
+    <load href="__PUBLIC__/{:UIKIT}/css/components/notify.css" />
+    <load href="__PUBLIC__/{:UIKIT}/js/components/notify.min.js" />
+    <style>
+    .v-center {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+    }
+
+    .uk-tab>li>a {
+        color: white;
+    }
+    </style>
+    <script>
+    App.controller("loginCtrl", ["$http", "$interval", "$scope", function($http, $interval, $scope) {
+
+        $scope.login_data = {
+            hash_code: "{$Think.session.hash_code}",
+            default_time: 120,
+            disable: false,
+            id: "",
+            pholder: "Merchant ID",
+            type: 1
+        };
+
+        $scope.email_code = function() {
+            post_url = "__CONTROLLER__/postmail/hash_code/" + $scope.login_data.hash_code + "/type/" + $scope.login_data.type + "/id/" + $scope.login_data.id;
+            $.getJSON(post_url, function(data) {
+                UIkit.notify(data.info);
+            });
+        }
+
+
+    }]);
+
+    $(function() {
+        //验证FORM
+        $("form").each(function() {
+            $(this).validate();
+        })
+    })
+    </script>
+</head>
+
+<body ng-controller="loginCtrl">
+    <div class="v-center">
+        <img class='uk-align-center' title="iPasspay" style="height:55px;" src="__PUBLIC__/Common/img/logo.png" />
+        <div class="tm-section-color-1">
+            <div class="uk-container uk-container-center">
+                <div class="uk-block uk-block-large">
+                    <div class="uk-grid">
+                        <div class="uk-width-medium-1-2 uk-width-small-1-1  uk-contrast">
+                            <h3>欢迎登录</h3>
+                            <div class="uk-panel">
+                                <ul>
+                                    <li>大中华区第一个实现抗欺诈抗拒付的事后控制系统</li>
+                                    <li>为高风险国际卡收单服务提供商及普通商户保驾护航</li>
+                                    <li>提供与Cybersource，Maxmind完全不同的风控思路</li>
+                                    <li>提供点到点的精准服务，物有所值</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="uk-width-medium-1-2 uk-width-small-1-1">
+                            <ul data-uk-tab="{connect:'#my-id'}" class="uk-tab" data-uk-tab>
+                                <li class="uk-active"><a href="">{$Think.lang.merchant_login}</a></li>
+                            </ul>
+                            <!-- This is the container of the content items -->
+                            <ul id="my-id" class="uk-switcher uk-margin">
+                                <li>
+                                    <form class="uk-form " method="post" action="{:U('Public/checkin')}" id="validate_form">
+                                        <div class="uk-form-row">
+                                            <input type="text" name="mid" required placeholder="Merchant ID" />
+                                        </div>
+                                        <div class="uk-form-row">
+                                            <input type="password" name="pwd" required placeholder="Password" />
+                                        </div>
+                                        <div class="uk-form-row">
+                                            <input type="text" name="verify" required placeholder="Captcha" />
+                                            <div verify-directive img-src="__CONTROLLER__/verify" style="margin-top:3px;"></div>
+                                        </div>
+                                        <div class="uk-form-row">
+                                            <button class="uk-button uk-button-success">Sign in</button>
+                                            &nbsp;&nbsp;<a class='uk-text-contrast uk-text-small' href="#chpwd-model" data-uk-modal>忘记密码？</a>
+                                        </div>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='uk-text-center'>
+            Copyright © 2014-{:Date('Y')} ipasspay.com All rights reserved
+        </div>
+    </div>
+    <div id="chpwd-model" class="uk-modal">
+        <form class="uk-form" method="post" action="__CONTROLLER__/updatePwd">
+            <input type="hidden" name="hash_code" value="{{login_data.hash_code}}" />
+            <div class="uk-modal-dialog">
+                <a class="uk-modal-close uk-close"></a>
+                <fieldset>
+                    <legend>重置密码</legend>
+                    <div class="uk-form-row">
+                        <input type="text" name="id" ng-model="login_data.id" required placeholder="{{login_data.pholder}}" />
+                        <button class='uk-button' ng-disabled='!login_data.id' type="button" ng-click="email_code()">发送邮箱验证码</button>
+                    </div>
+                    <div class="uk-form-row">
+                        <input type="text" name="code" required placeholder="Email code" />
+                    </div>
+                    <div class="uk-form-row">
+                        <input type="password" name="pwd" minlength="6" required placeholder="New Password" />
+                    </div>
+                    <div class="uk-modal-footer uk-text-right">
+                        <button type="submit" class="uk-button uk-button-primary">{$Think.lang.confirm}</button>
+                    </div>
+                </fieldset>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

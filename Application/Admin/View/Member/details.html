@@ -26,20 +26,21 @@
             </td>
         </tr>
         <tr>
-            <td>编辑组</td>
-            <td>
-                <select name="type_id">
-                    <option value="">--</option>
-                    <volist name=":getObjectList('editor')" id="vo">
-                        <option <eq name='vo.ed_id' value="$type_id">selected</eq> value="{$vo.ed_id}">{$vo.ed_name}</option>
-                    </volist>
-                </select>
-            </td>
-        </tr>
-        <tr>
             <td>{$Think.lang.remark}</td>
             <td>
                 <textarea class="form-control" name="remark">{$remark}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>Bind</td>
+            <td>
+                <input type="text" class="form-control" name="bind_account" value="{$bind_account}" required/>
+            </td>
+        </tr>
+        <tr>
+            <td>Verify</td>
+            <td>
+                <input type="password" class="form-control" name="verify" value="{$verify}" required/> &nbsp;
             </td>
         </tr>
         <tr>
@@ -67,7 +68,7 @@
         </tr>
         <tr>
             <td>{$Think.lang.last_login_ip}</td>
-            <td>{$last_login_ip}</td>
+            <td>{$last_login_ip}[{$last_login_ip|getLocationFromIp}]</td>
         </tr>
         <tr>
             <td>{$Think.lang.update_time}</td>

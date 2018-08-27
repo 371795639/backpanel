@@ -11,6 +11,14 @@ if (is_readable($file_local) == true) {
 }
 
 /**
+ *根据IP地址获取地理位置信息
+ */
+function getLocationFromIp($ip) {
+	$result = \Zhuzhichao\IpLocationZh\Ip::find($ip);
+	return $result[1];
+}
+
+/**
  * 根据标题属性来显示标题
  * @param $title 显示的标题内容
  * @param $property 属性的序列化字符串
