@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:1433
--- Generation Time: 2016-06-16 17:30:47
+-- Generation Time: 2018-08-27 21:18:27
 -- 服务器版本： 5.5.42
 -- PHP Version: 5.6.10
 
@@ -3567,6 +3567,7 @@ CREATE TABLE `ips_article` (
   `doc_title` varchar(200) NOT NULL,
   `doc_property` varchar(200) NOT NULL COMMENT '标题属性',
   `doc_cat` int(11) NOT NULL,
+  `doc_price` decimal(12,2) NOT NULL DEFAULT '0.00' COMMENT '价格参数',
   `doc_desc` varchar(300) NOT NULL,
   `doc_keyword` varchar(50) NOT NULL,
   `doc_content` text NOT NULL,
@@ -3581,17 +3582,14 @@ CREATE TABLE `ips_article` (
   `doc_sort` int(11) NOT NULL,
   `doc_update_time` datetime NOT NULL,
   `doc_ed_id` int(11) NOT NULL COMMENT '编辑人员'
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- 转存表中的数据 `ips_article`
 --
 
-INSERT INTO `ips_article` (`doc_id`, `doc_title`, `doc_property`, `doc_cat`, `doc_desc`, `doc_keyword`, `doc_content`, `doc_status`, `doc_dir`, `doc_img`, `doc_author`, `doc_time`, `doc_source`, `doc_hit`, `doc_label`, `doc_sort`, `doc_update_time`, `doc_ed_id`) VALUES
-(1, '不问苍生问鬼神 蔡英文就职典礼彩排如庙会', '', 2, '不问苍生问鬼神 蔡英文就职典礼彩排如庙会', '不问苍生问鬼神 蔡英文就职典礼彩排如庙会', '&lt;h1 id=&quot;4g_title&quot;&gt;不问苍生问鬼神 蔡英文就职典礼彩排如庙会&lt;/h1&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', 1, '2016-05-18/', '573c2fc8afe03.png', '', '2016-05-18 09:03:04', '', 33, '', 10, '2016-05-18 00:00:00', 0),
-(2, '全球最大邮轮抵达英国 比泰坦尼克号长100米全球最大邮轮抵达英国 比泰坦尼克号长100米全球最大邮轮抵达英国 比泰坦尼克号长100米', '', 2, '32432', '432', '&lt;p&gt;&lt;span id=&quot;title&quot;&gt;全球最大邮轮抵达英国 比泰坦尼克号长100米&lt;/span&gt;&lt;/p&gt;', 1, '2016-05-18/', '573c3019565b1.png', '', '2016-05-18 09:04:25', '', 66, '', 10, '2016-05-18 00:00:00', 0),
-(3, '423432哦哦哦哦', 'a:4:{i:0;s:1:"1";i:1;s:1:"2";i:2;s:1:"3";i:3;s:1:"4";}', 9, '32432', '4324', '&lt;p&gt;432&lt;br/&gt;&lt;/p&gt;', 1, '', '', '', '2016-06-14 16:43:02', '', 57, '', 10, '2016-06-14 00:00:00', 0),
-(4, '345324324', 'a:5:{i:0;s:1:"1";i:1;s:1:"2";i:2;s:1:"3";i:3;s:1:"4";i:4;s:1:"5";}', 12, '432432', '', '&lt;p&gt;43243&lt;br/&gt;&lt;/p&gt;', 1, '', '', '', '2016-06-14 16:42:52', '', 3, '', 10, '2016-06-14 00:00:00', 0);
+INSERT INTO `ips_article` (`doc_id`, `doc_title`, `doc_property`, `doc_cat`, `doc_price`, `doc_desc`, `doc_keyword`, `doc_content`, `doc_status`, `doc_dir`, `doc_img`, `doc_author`, `doc_time`, `doc_source`, `doc_hit`, `doc_label`, `doc_sort`, `doc_update_time`, `doc_ed_id`) VALUES
+(5, 'Anti-Virus', 's:0:"";', 14, '0.00', '32423', '', '&lt;p&gt;4&lt;br/&gt;&lt;/p&gt;', 1, '', '', '', '2018-08-27 19:13:14', '', 29, '', 10, '2018-08-28 00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -3701,24 +3699,22 @@ CREATE TABLE `ips_category` (
   `cat_index` varchar(50) NOT NULL DEFAULT 'index',
   `cat_details` varchar(50) NOT NULL DEFAULT 'details',
   `cat_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='文章分类表';
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='文章分类表';
 
 --
 -- 转存表中的数据 `ips_category`
 --
 
 INSERT INTO `ips_category` (`cat_id`, `cat_name`, `cat_parent`, `cat_status`, `cat_remark`, `cat_index`, `cat_details`, `cat_time`) VALUES
-(1, '测试', 0, 0, '4444666', 'index', 'details', '2016-05-09 08:48:17'),
-(2, '国内新闻', 0, 0, '', 'index', 'details', '2016-05-18 08:17:14'),
+(13, 'dfadsfdasfdsa', 0, 1, '', 'index', 'details', '2018-08-27 18:44:20'),
 (4, '测试12', 2, 1, '', 'index', 'details', '2016-06-14 03:39:03'),
 (5, '4324324', 4, 1, '4324', 'index', 'details', '2016-06-14 03:40:09'),
 (6, 'book1', 4, 1, '', 'index', 'details', '2016-06-14 03:44:21'),
 (7, 'book4', 4, 1, '', 'index', 'details', '2016-06-14 03:44:30'),
-(8, '234324', 0, 1, '4324234', 'index', 'details', '2016-06-14 05:29:16'),
 (9, 'mmmm', 0, 1, '546456', 'index', 'details', '2016-06-14 05:29:29'),
 (10, 'hgfhfgdh', 4, 1, '', 'index', 'details', '2016-06-14 05:30:07'),
 (11, 'nnn', 0, 1, '234324', 'index', 'details', '2016-06-14 05:48:29'),
-(12, 'hhhhh', 11, 1, '3213', 'index', 'details', '2016-06-14 05:48:41');
+(14, '667654654654', 0, 1, '', 'index', 'details', '2018-08-27 18:46:18');
 
 -- --------------------------------------------------------
 
@@ -4039,15 +4035,7 @@ CREATE TABLE `ips_document` (
   `doc_sort` int(11) NOT NULL DEFAULT '10',
   `doc_update_time` datetime NOT NULL,
   `doc_ed_id` int(11) NOT NULL COMMENT '编辑人员ID'
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
---
--- 转存表中的数据 `ips_document`
---
-
-INSERT INTO `ips_document` (`doc_id`, `doc_title`, `doc_cat`, `doc_desc`, `doc_keyword`, `doc_content`, `doc_unique`, `doc_status`, `doc_dir`, `doc_img`, `doc_time`, `doc_source`, `doc_tpl`, `doc_sort`, `doc_update_time`, `doc_ed_id`) VALUES
-(1, '测试单页', 1, '测试单页', '', '&lt;p&gt;测试单页&lt;/p&gt;', 'mmm', 1, '2016-05-10/', '5731a7c16de3f.png', '2016-05-17 02:38:17', '434324', 'show', 10, '2016-05-10 00:00:00', 0),
-(3, '测试单页', 1, '43543', '', '&lt;p&gt;5435&lt;br/&gt;&lt;/p&gt;', 'hhh', 1, '', '', '2016-05-18 08:53:58', '', 'show', 10, '2016-05-18 00:00:00', 0);
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -4100,7 +4088,7 @@ CREATE TABLE `ips_member` (
 --
 
 INSERT INTO `ips_member` (`id`, `account`, `nickname`, `password`, `bind_account`, `last_login_time`, `last_login_ip`, `login_count`, `verify`, `email`, `remark`, `create_time`, `update_time`, `status`, `type_id`, `info`, `salt`) VALUES
-(1, 'admin', '超级管理员', '41e8e3b038cb6f18db2708a6571679b1', '', '2016-06-16 23:28:01', '127.0.0.1', 229, '', '383542899@qq.com', 'test', '2013-10-15 03:48:33', '2016-06-16 23:17:59', 1, '1', '', 'Z88zcPkRiBbBZKV5ittO'),
+(1, 'admin', '超级管理员', '41e8e3b038cb6f18db2708a6571679b1', '', '2018-08-28 03:17:42', '127.0.0.1', 233, '', '383542899@qq.com', 'test', '2013-10-15 03:48:33', '2016-06-16 23:17:59', 1, '1', '', 'Z88zcPkRiBbBZKV5ittO'),
 (2, 'hello', '测试管理员', '73e59928950fcce6b4adc5fe58bcb39a', '', '2016-06-16 23:27:25', '127.0.0.1', 2, '', '245995445@qq.com', '1212', '2013-10-17 06:45:49', '2016-06-16 23:27:03', 1, '1', '', '5aYBzeTq82R3KGzmt98o'),
 (3, 'admin121', 'admin', '0192023a7bbd73250516f069df18b500', '', '', '', 0, '', '3835428991@qq.com', '2332432', '2014-01-14 07:26:12', '2014-01-14 15:28:50', 1, '', '', '');
 
@@ -4121,7 +4109,7 @@ CREATE TABLE `ips_session` (
 --
 
 INSERT INTO `ips_session` (`session_id`, `session_expire`, `session_data`) VALUES
-('d0b87caff7a2f43edbce28f5779fe9cd', 1466109010, 0x64326439373763353834343432373164396337383031383765393366383065357c613a323a7b733a31313a227665726966795f636f6465223b733a33323a223831356234643037383863613762663932666532373238393634303863333663223b733a31313a227665726966795f74696d65223b693a313436363039303837383b7d7569647c733a313a2231223b);
+('e14664d1a58d9a534bbdbf4cbed164ee', 1535415477, 0x7569647c733a313a2231223b);
 
 -- --------------------------------------------------------
 
@@ -4135,7 +4123,7 @@ CREATE TABLE `ips_weblog` (
   `log_action` varchar(100) NOT NULL,
   `log_sql` varchar(200) NOT NULL,
   `log_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=MyISAM AUTO_INCREMENT=1941 DEFAULT CHARSET=utf8 COMMENT='操作日志'
+) ENGINE=MyISAM AUTO_INCREMENT=2010 DEFAULT CHARSET=utf8 COMMENT='操作日志'
 /*!50100 PARTITION BY RANGE (log_id)
 (PARTITION p0 VALUES LESS THAN (2000000) ENGINE = MyISAM,
  PARTITION p1 VALUES LESS THAN (4000000) ENGINE = MyISAM,
@@ -6062,7 +6050,77 @@ INSERT INTO `ips_weblog` (`log_id`, `log_admin`, `log_action`, `log_sql`, `log_t
 (1937, 'hello', 'Index/right', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''2'' LIMIT 1  ', '2016-06-16 15:27:42'),
 (1938, 'admin', 'Index/left', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2016-06-16 15:28:02'),
 (1939, 'admin', 'Index/top', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2016-06-16 15:28:02'),
-(1940, 'admin', 'Index/right', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2016-06-16 15:28:02');
+(1940, 'admin', 'Index/right', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2016-06-16 15:28:02'),
+(1941, 'admin', 'Index/right', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2016-08-09 15:44:53'),
+(1942, 'admin', 'Index/top', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2016-08-09 15:44:53'),
+(1943, 'admin', 'Index/left', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2016-08-09 15:44:53'),
+(1944, 'admin', 'Index/right', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2016-08-09 15:45:34'),
+(1945, 'admin', 'Index/top', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 18:34:02'),
+(1946, 'admin', 'Index/left', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 18:34:02'),
+(1947, 'admin', 'Index/right', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 18:34:02'),
+(1948, 'admin', 'Index/top', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 18:35:40'),
+(1949, 'admin', 'Index/left', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 18:35:40'),
+(1950, 'admin', 'Index/right', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 18:35:40'),
+(1951, 'admin', 'Index/left', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 18:36:55'),
+(1952, 'admin', 'Index/top', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 18:36:55'),
+(1953, 'admin', 'Index/right', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 18:36:55'),
+(1954, 'admin', 'Index/left', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 18:37:16'),
+(1955, 'admin', 'Index/top', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 18:37:52'),
+(1956, 'admin', 'Index/left', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 18:37:52'),
+(1957, 'admin', 'Index/right', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 18:37:52'),
+(1958, 'admin', 'Index/left', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 18:38:18'),
+(1959, 'admin', 'Index/top', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 18:38:18'),
+(1960, 'admin', 'Index/right', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 18:38:18'),
+(1961, 'admin', 'Index/top', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 18:39:14'),
+(1962, 'admin', 'Index/left', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 18:39:14');
+INSERT INTO `ips_weblog` (`log_id`, `log_admin`, `log_action`, `log_sql`, `log_time`) VALUES
+(1963, 'admin', 'Index/right', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 18:39:14'),
+(1964, 'admin', 'Index/top', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 18:39:37'),
+(1965, 'admin', 'Index/right', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 18:39:37'),
+(1966, 'admin', 'Index/left', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 18:39:37'),
+(1967, 'admin', 'Index/left', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 18:40:54'),
+(1968, 'admin', 'Index/top', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 18:40:54'),
+(1969, 'admin', 'Index/right', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 18:40:54'),
+(1970, 'admin', 'Index/top', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 18:42:06'),
+(1971, 'admin', 'Index/left', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 18:42:06'),
+(1972, 'admin', 'Index/right', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 18:42:06'),
+(1973, 'admin', 'Article/deleteHandle', 'DELETE FROM `ips_article` WHERE `doc_id` = 4', '2018-08-27 18:42:22'),
+(1974, 'admin', 'Category/deleteHandle', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 18:42:27'),
+(1975, 'admin', 'Category/deleteHandle', 'DELETE FROM `ips_category` WHERE `cat_id` = 1', '2018-08-27 18:44:04'),
+(1976, 'admin', 'Category/addHandle', 'INSERT INTO `ips_category` (`cat_name`,`cat_parent`,`cat_status`,`cat_index`,`cat_details`,`cat_remark`) VALUES (''dfadsfdasfdsa'',''0'',''1'',''index'',''details'','''')', '2018-08-27 18:44:20'),
+(1977, 'admin', 'Category/addHandle', 'INSERT INTO `ips_category` (`cat_name`,`cat_parent`,`cat_status`,`cat_index`,`cat_details`,`cat_remark`) VALUES (''667654654654'',''0'',''1'',''index'',''details'','''')', '2018-08-27 18:46:18'),
+(1978, 'admin', 'Category/deleteHandle', 'DELETE FROM `ips_category` WHERE `cat_id` = 8', '2018-08-27 18:46:36'),
+(1979, 'admin', 'Category/addHandle', 'INSERT INTO `ips_category` (`cat_name`,`cat_parent`,`cat_status`,`cat_index`,`cat_details`,`cat_remark`) VALUES (''公用单页'',''0'',''1'',''index'',''details'','''')', '2018-08-27 18:46:46'),
+(1980, 'admin', 'Category/deleteHandle', 'DELETE FROM `ips_category` WHERE `cat_id` = 15', '2018-08-27 18:48:10'),
+(1981, 'admin', 'Category/deleteHandle', 'DELETE FROM `ips_category` WHERE `cat_id` = 2', '2018-08-27 18:53:59'),
+(1982, 'admin', 'Category/addHandle', 'INSERT INTO `ips_category` (`cat_name`,`cat_parent`,`cat_status`,`cat_index`,`cat_details`,`cat_remark`) VALUES (''公用单页'',''0'',''1'',''index'',''details'','''')', '2018-08-27 18:54:06'),
+(1983, 'admin', 'Category/deleteHandle', 'SELECT * FROM `ips_category` WHERE `cat_parent` = 11 LIMIT 1  ', '2018-08-27 19:01:26'),
+(1984, 'admin', 'Category/deleteHandle', 'DELETE FROM `ips_category` WHERE `cat_id` = 12', '2018-08-27 19:01:31'),
+(1985, 'admin', 'Document/addHandle', 'INSERT INTO `ips_document` (`doc_title`,`doc_cat`,`doc_unique`,`doc_desc`,`doc_keyword`,`doc_status`,`doc_tpl`,`doc_sort`,`doc_source`,`doc_update_time`) VALUES (''ABOUT US'',''16'',''about'','''','''',''1'',''sho', '2018-08-27 19:03:27'),
+(1986, 'admin', 'Category/deleteHandle', 'DELETE FROM `ips_category` WHERE `cat_id` = 16', '2018-08-27 19:05:29'),
+(1987, 'admin', 'Group/assignAccess', 'SELECT * FROM `ips_auth_rule` WHERE `module` = ''管理员组'' ', '2018-08-27 19:05:44'),
+(1988, 'admin', 'Index/setting', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 19:06:07'),
+(1989, 'admin', 'Config/phpinfo', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 19:06:08'),
+(1990, 'admin', 'Config/phpinfo', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 19:06:09'),
+(1991, 'admin', 'Index/right', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 19:06:12'),
+(1992, 'admin', 'Index/left', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 19:09:46'),
+(1993, 'admin', 'Index/left', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 19:09:50'),
+(1994, 'admin', 'Index/right', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 19:09:50'),
+(1995, 'admin', 'Index/top', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 19:09:50'),
+(1996, 'admin', 'Index/top', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 19:10:34'),
+(1997, 'admin', 'Index/left', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 19:10:34'),
+(1998, 'admin', 'Index/right', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 19:10:34'),
+(1999, 'admin', 'Index/top', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 19:11:08'),
+(2000, 'admin', 'Index/right', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 19:11:08'),
+(2001, 'admin', 'Index/left', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 19:11:08'),
+(2002, 'admin', 'Index/top', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 19:11:31'),
+(2003, 'admin', 'Index/left', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 19:11:31'),
+(2004, 'admin', 'Index/right', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 19:11:31'),
+(2005, 'admin', 'Article/addHandle', 'INSERT INTO `ips_article` (`doc_title`,`doc_cat`,`doc_desc`,`doc_keyword`,`doc_status`,`doc_label`,`doc_hit`,`doc_sort`,`doc_source`,`doc_update_time`,`doc_content`,`doc_property`,`doc_ed_id`) VALUES ', '2018-08-27 19:13:14'),
+(2006, 'admin', 'Index/top', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 19:17:43'),
+(2007, 'admin', 'Index/left', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 19:17:43'),
+(2008, 'admin', 'Index/right', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 19:17:43'),
+(2009, 'admin', 'Index/right', 'SELECT * FROM ips_member Member LEFT JOIN ips_editor Editor ON Member.type_id=Editor.ed_id WHERE `id` = ''1'' LIMIT 1  ', '2018-08-27 19:17:45');
 
 -- --------------------------------------------------------
 
@@ -6440,7 +6498,7 @@ ALTER TABLE `ips_areas`
 -- AUTO_INCREMENT for table `ips_article`
 --
 ALTER TABLE `ips_article`
-  MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `ips_auth_group`
 --
@@ -6460,7 +6518,7 @@ ALTER TABLE `ips_autoperform`
 -- AUTO_INCREMENT for table `ips_category`
 --
 ALTER TABLE `ips_category`
-  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `ips_countries`
 --
@@ -6470,7 +6528,7 @@ ALTER TABLE `ips_countries`
 -- AUTO_INCREMENT for table `ips_document`
 --
 ALTER TABLE `ips_document`
-  MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `ips_editor`
 --
@@ -6485,7 +6543,7 @@ ALTER TABLE `ips_member`
 -- AUTO_INCREMENT for table `ips_weblog`
 --
 ALTER TABLE `ips_weblog`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1941;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2010;
 --
 -- AUTO_INCREMENT for table `ips_zones`
 --
