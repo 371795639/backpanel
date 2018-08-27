@@ -13,6 +13,11 @@ $global_config = array(
 	//默认成功跳转对应的模板文件
 	'TMPL_ACTION_SUCCESS' => './Public/Common/dispatch_jump.tpl',
 
+	//配置前端资源路径
+	'TMPL_PARSE_STRING' => [
+		'__BOWER__' => __ROOT__ . "/bower_components",
+	],
+
 	//自定义session数据库存储
 	'SESSION_TYPE' => 'Db',
 	'SESSION_TABLE' => 'ips_session', //存session的表

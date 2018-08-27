@@ -7,21 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>{$Think.lang.backoffice_title}</title>
-    <!-- UIKIT -->
-    <load href="__PUBLIC__/{:UIKIT}/css/uikit.almost-flat.min.css" />
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <load href="__PUBLIC__/Common/js/jquery-1.11.2.min.js" />
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <load href="__PUBLIC__/{:UIKIT}/js/uikit.min.js" />
-    <load href="__PUBLIC__/Common/dist/jquery.validate.min.js" />
-    <load href="__PUBLIC__/Common/dist/define_methods.js" />
+    <title>控制面板-right</title>
+    <load href="__BOWER__/uikit/css/uikit.almost-flat.min.css" />
+    <load href="__BOWER__/jquery/dist/jquery.min.js" />
+    <load href="__BOWER__/uikit/js/uikit.min.js" />
     <style>
     form input[type=text],
     input[type=password],
@@ -29,11 +18,15 @@
     select {
         width: 400px;
     }
-    
+
+    * {
+        font-size: 12px;
+    }
+
     .uk-table-hover {
         min-width: 1280px;
     }
-    
+
     label.error {
         color: red;
         display: block;
@@ -91,9 +84,8 @@
         <ul class="uk-list">
             <li>1.一般来说，排序数字越大，前台显示越靠前。</li>
             <li>2.状态，一般表示的意思是否可用，是否激活，是否显示，是否处理，是否删除，是否释放等。</li>
-            <li>3.如无特别说明，系统金额都以{$web_config.web_currency}计算。</li>
-            <li>4.系统所有限制频率，次数的值如果为0，如无特别说明，一般即表示不限制。</li>
-            <li>5.如果你编辑页面有刷新缓存按钮，建议你在编辑成功后，点击一下该功能。</li>
+            <li>3.系统所有限制频率，次数的值如果为0，如无特别说明，一般即表示不限制。</li>
+            <li>4.如果你编辑页面有刷新缓存按钮，建议你在编辑成功后，点击一下该功能。</li>
         </ul>
         <div style="height:20px;">
         </div>

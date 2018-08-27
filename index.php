@@ -20,10 +20,7 @@ if (version_compare(PHP_VERSION, '5.4.0', '<')) {
 require './vendor/autoload.php';
 
 //自定义一些常规变量
-const UIKIT = "uikit-2.26.2";
-const ANGULARJS = "angular-1.2.28";
-const UEDITOR = "ueditor1_4_3";
-const ECHART = "echarts-2.2.7";
+const UEDITOR = "ueditor1_4_3_3";
 
 // 开启调试模式 建议开发阶段开启 部署阶段注释或者设为false
 define('APP_DEBUG', True);

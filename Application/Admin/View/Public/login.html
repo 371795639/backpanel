@@ -1,83 +1,58 @@
 <!DOCTYPE html>
-<html lang="zh-CN" ng-app="App" class="uk-height-1-1">
+<html lang="zh-CN" class="uk-height-1-1">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>{$Think.lang.backoffice_title}</title>
+    <title>管理面板-后台登录</title>
     <!-- UIKIT -->
-    <load href="__PUBLIC__/{:UIKIT}/css/uikit.almost-flat.min.css" />
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <load href="__PUBLIC__/Common/js/jquery-1.11.2.min.js" />
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <load href="__PUBLIC__/{:UIKIT}/js/uikit.min.js" />
-    <load href="__PUBLIC__/{:ANGULARJS}/angular.min.js" />
-    <load href="__PUBLIC__/App/CommonDirective.js" />
-    <script>
-    App.controller("loginCtrl", ['$scope', function($scope) {
-        $scope.flag = false;
-        $scope.sendCode = function() {
-            $scope.flag = true;
-            //alert($scope.username);return;
-            $.getJSON("__CONTROLLER__/sendConfirmCode/username/" + $scope.username, function(data) {
-                $scope.info = data.info;
-                $scope.status = data.status;
-                $scope.flag = false;
-                $scope.$apply();
-            });
-        }
-    }]);
-    </script>
+    <load href="__BOWER__/uikit/css/uikit.almost-flat.min.css" />
+    <load href="__BOWER__/vue/dist/vue.min.js" />
 </head>
 
-<body>
-    <div ng-controller="loginCtrl">
-        <div class="uk-block ">
-            <div style="margin:0 auto; width:300px;">
-                <div class="uk-text-center">
-                    <figure class="uk-thumbnail">
+<body class="uk-height-1-1">
+    <div id="app" class="uk-vertical-align uk-height-1-1">
+        <div class="uk-vertical-align-middle" style="width:100%;">
+            <div class="uk-block" style="background-image: url('__PUBLIC__/img/02.jpg');">
+                <div style="margin:0 auto; width:300px;">
+                    <div class="uk-text-center">
                         <img src="__PUBLIC__/Common/img/logo_mini.png" />
-                    </figure>
-                    <br>
-                    <br>
+                        <br>
+                        <br>
+                    </div>
+                    <form action="__CONTROLLER__/checkin" method="post" class="uk-panel uk-panel-box uk-panel-box-secondary uk-form">
+                        <div class="uk-form-row uk-form-icon uk-width-1-1">
+                            <i class="uk-icon-user"></i>
+                            <input class="uk-width-1-2" type="text" v-model="username" name="username" placeholder="登录名">
+                        </div>
+                        <div class="uk-form-row uk-form-icon uk-width-1-1">
+                            <i class="uk-icon-lock"></i>
+                            <input class="uk-width-1-1" type="password" v-model="password" name="password" placeholder="密码">
+                        </div>
+                        <div class="uk-form-row uk-form-icon uk-width-1-1">
+                            <i class="uk-icon-magnet"></i>
+                            <input class="uk-width-1-1" type="text" minlength="6" maxlength="6" v-model="twofa_code" name="twofa_code" placeholder="2因子验证">
+                        </div>
+                        <div class="uk-form-row ">
+                            <button :disabled="!username || !password || !twofa_code" class="uk-width-1-1 uk-button uk-button-primary" type="submit">Sign In</button>
+                        </div>
+                    </form>
                 </div>
-                <div ng-show="status==1" class="uk-alert uk-alert-success">{{info}}</div>
-                <div ng-show="status==0" class="uk-alert uk-alert-danger">{{info}}</div>
-                <form action="__CONTROLLER__/checkin" method="post" class="uk-panel uk-panel-box uk-form" name="validate_form">
-                    <div class="uk-form-row uk-form-icon uk-width-1-1">
-                        <i class="uk-icon-user"></i>
-                        <input class="uk-width-1-2" type="text" ng-model="username" required name="username" placeholder="{$Think.lang.login_account}">
-                        <button type="button" ng-click="sendCode()" ng-disabled="validate_form.username.$invalid || flag" class="uk-button uk-button-success">{$Think.lang.confirm_code}</button>
-                    </div>
-                    <div class="uk-form-row uk-form-icon uk-width-1-1">
-                        <i class="uk-icon-lock"></i>
-                        <input class="uk-width-1-1" type="password" ng-model="passworld" required name="password" placeholder="{$Think.lang.login_pwd}">
-                    </div>
-                    <div class="uk-form-row">
-                        <input class="uk-width-1-3" type="text" ng-model="verify" required name="verify" placeholder="{$Think.lang.verify}">
-                        <div verify-directive img-src="__CONTROLLER__/verify"></div>
-                    </div>
-                    <div class="uk-form-row">
-                        <input class="uk-width-1-3" type="text" ng-model="confirm_code" required name="confirm_code" placeholder="{$Think.lang.confirm_code}">
-                    </div>
-                    <div class="uk-form-row">
-                        <button ng-disabled="validate_form.$invalid" class="uk-width-1-1 uk-button uk-button-primary" type="submit">Login</button>
-                    </div>
-                </form>
-            </div>
-            <div class="uk-alert uk-alert-warning">
-                <center>建议使用IE8+,firefox,chrome,safari等现代浏览器查看以获取最佳显示效果，如果使用国产浏览器如猎豹，百度，360等，请切换至极速模式下查看。IE7及以下浏览器可能会导致页面变形。</center>
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            "username": "",
+            "password": "",
+            "twofa_code": "",
+        }
+    })
+    </script>
 </body>
 
 </html>

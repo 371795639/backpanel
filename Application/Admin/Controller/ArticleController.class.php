@@ -2,10 +2,8 @@
 
 namespace Admin\Controller;
 
-class ArticleController extends CommonController
-{
-    public function _initialize()
-    {
+class ArticleController extends CommonController {
+    public function _initialize() {
         parent::_initialize();
         $this->model = 'article';
         $this->model_view = 'ArticleView';
@@ -14,13 +12,11 @@ class ArticleController extends CommonController
         $this->title_details = '文章详情';
     }
 
-    public function index()
-    {
+    public function index() {
         parent::cms_index();
     }
 
-    public function addHandle()
-    {
+    public function addHandle() {
         $oop = M($this->model);
         $oop->create();
 
@@ -49,8 +45,7 @@ class ArticleController extends CommonController
         }
     }
 
-    public function updateHandle()
-    {
+    public function updateHandle() {
         $oop = M($this->model);
         $oop->create();
 

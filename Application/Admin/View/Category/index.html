@@ -6,6 +6,7 @@
     </button>
     <a href="__CONTROLLER__/clearCache/category" class="uk-button">刷新缓存</a>
 </p>
+<div class="uk-alert uk-alert-warning"><i class="uk-icon-info-circle"></i>&nbsp;删除分类，会连带删除分类下的所有文章和单页。</div>
 {$page}
 <div class="uk-overflow-container">
     <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
@@ -19,7 +20,7 @@
         <tbody>
             <volist name="list" id="vo">
                 <tr>
-                    <td>{$vo.level|levelshow}<a href="__CONTROLLER__/details/{$vo.cat_id}">{$vo.cat_name}</a></td>
+                    <td>{$vo.level|levelshow}<a href="__CONTROLLER__/details/{$vo.cat_id}">{$vo.cat_name}</a>&nbsp;[{$vo.cat_id}]</td>
                     <td>{$vo.cat_status|displayIcon}</td>
                     <td>{$vo.cat_index}/{$vo.cat_details}</td>
                     <td>{$vo.cat_time}</td>
