@@ -1,12 +1,7 @@
 <?php
-
 namespace Home\Controller;
+use Think\Controller;
 
-class EmptyController extends CommonController
-{
-    //空方法
-    public function _empty()
-    {
-        $this->display('Public:error404');
-    }
+class EmptyController extends CommonController {
+
 }

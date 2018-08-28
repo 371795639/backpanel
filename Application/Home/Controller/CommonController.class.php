@@ -95,4 +95,14 @@ abstract class CommonController extends BaseController {
 
 	}
 
+	//空控制器
+	public function _empty() {
+		if (I('path.1')) {
+			$this->cms(I('path.1'));
+		} else {
+			$this->display("Public:error404");
+		}
+
+	}
+
 }
