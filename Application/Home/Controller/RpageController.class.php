@@ -27,4 +27,10 @@ class RpageController extends CommonController {
 			$this->display("Public:error404");
 		}
 	}
+
+
+
+
+
+
 }
