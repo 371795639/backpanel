@@ -1,14 +1,11 @@
 <layout name="layout" />
-<load href="__PUBLIC__/{:UIKIT}/css/components/datepicker.min.css" />
-<load href="__PUBLIC__/{:UIKIT}/js/components/datepicker.min.js" />
-<load href="__PUBLIC__/{:UIKIT}/js/components/lightbox.min.js" />
 <p>
     <!-- Button trigger modal -->
     <a href="__CONTROLLER__/index" class="uk-button">
         {$Think.lang.back}
     </a>
 </p>
-<div class="uk-overflow-container">
+<div class="uk-overflow-container" id="app">
     <form class="uk-form" enctype="multipart/form-data" method="post" action="__CONTROLLER__/addHandle">
         <table class="uk-table">
             <tr>
@@ -65,7 +62,7 @@
             <tr>
                 <td>图片</td>
                 <td>
-                    <input type="file" name="file" />
+                    <include file="Public/vue-upload" />
                 </td>
             </tr>
             <tr>

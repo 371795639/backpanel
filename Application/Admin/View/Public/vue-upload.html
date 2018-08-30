@@ -1,0 +1,74 @@
+<div id="ddd">
+    <div class="img-item" v-for="(item,key) in imgArr">
+        <img :src="item.src" alt="" style="height:100px;" />
+        <i class="uk-icon-trash uk-icon-hover" @click="deletePic(key)"></i>
+    </div>
+    <div class="add-pic" @click="addPic()">+
+        <input name="file[]" id="uploaderInput" type="file" accept="image/*" multiple/>
+    </div>
+</div>
+<script type="text/javascript">
+$(function() {
+    var vm = new Vue({
+        el: '#ddd',
+        data: {
+            imgArr: []
+        },
+        methods: {
+            addPic: function() {
+                _self = this;
+                input = $("#uploaderInput");
+                input.unbind('change').on('change', function(e) {
+                    var files = input[0].files;
+                    if (files.length + _self.imgArr.length > 6) {
+                        UIkit.modal.alert("最多可以上传6张图片！");
+                        return false;
+                    }
+
+                    for (var i = 0; i < files.length; i++) {
+                        var reader = new FileReader();
+                        reader.readAsDataURL(files[i]);
+                        //console.log(files[i]);
+                        reader.onload = function() {
+                            _self.imgArr.push({ src: this.result });
+                        }
+                    }
+                });
+            },
+            deletePic: function($key) {
+                this.imgArr.splice($key, 1);
+            }
+        }
+    })
+})
+</script>
+<style type="text/css">
+.img-item {
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.add-pic {
+    background: #f3f3f3;
+    width: 4.4rem;
+    height: 3.75rem;
+    float: left;
+    margin-top: 0.5rem;
+    text-align: center;
+    font-size: 2rem;
+    line-height: 3.5rem;
+    color: #979797;
+    position: relative;
+}
+
+.add-pic input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    opacity: 0;
+}
+</style>

@@ -1,7 +1,5 @@
 <layout name="layout" />
-<load href="__PUBLIC__/{:UIKIT}/css/components/datepicker.min.css" />
-<load href="__PUBLIC__/{:UIKIT}/js/components/datepicker.min.js" />
-<load href="__PUBLIC__/{:UIKIT}/js/components/lightbox.min.js" />
+<load href="__BOWER__/uikit/js/components/lightbox.min.js" />
 <p>
     <!-- Button trigger modal -->
     <a href="__CONTROLLER__/index" class="uk-button">
@@ -66,12 +64,16 @@
             <tr>
                 <td>图片</td>
                 <td>
-                    <input type="file" name="file" />
-                    <notempty name="doc_dir">
-                        <a href="__PUBLIC__/Uploads/{$doc_dir}{$doc_img}" data-uk-lightbox title="">
-                            <img src="__PUBLIC__/Uploads/{$doc_dir}thumb_{$doc_img}" />
-                        </a>
-                    </notempty>
+                    <div class="uk-grid uk-grid-width-medium-1-6" data-uk-grid-margin>
+                        <volist name=":explode('|',$doc_img)" id="vo">
+                            <div> <a href="__PUBLIC__/Uploads/{$doc_dir}/{$vo}" data-lightbox-type="image" data-uk-lightbox>
+                                <img src="__PUBLIC__/Uploads/{$doc_dir}/thumb_{$vo}" />
+                                </a>
+                            </div>
+                        </volist>
+                    </div>
+                    <hr>
+                    <include file="Public/vue-upload" />
                 </td>
             </tr>
             <tr>

@@ -121,15 +121,19 @@ abstract class CommonController extends BaseController {
 		$oop->create();
 
 		if (!empty($_FILES['file']['tmp_name'])) {
+
 			$result = parent::uploadfile($exts = array('jpg', 'gif', 'png', 'jpeg'), $thumb = true);
 			if (!$result['status']) {
 				$this->error($result['info']);
 			}
-			$oop->doc_dir = $result['info']['file']['savepath'];
-			$oop->doc_img = $result['info']['file']['savename'];
+
+			$oop->doc_dir = $result['info'][0]['savepath'];
+			foreach ($result['info'] as $key => $val) {
+				$arr[$key] = $val["savename"];
+			}
+
+			$oop->doc_img = implode("|", $arr);
 		}
-		//dump(I());
-		//dump($result);exit;
 		try {
 			$oop->doc_property = serialize(I('doc_property'));
 			$oop->doc_ed_id = $this->authInfo['type_id'] . "";
@@ -173,14 +177,21 @@ abstract class CommonController extends BaseController {
 	protected function cms_addHandle() {
 		$oop = M($this->model);
 		$oop->create();
-
+		//dump($_FILES);
+		//exit;
 		if (!empty($_FILES['file']['tmp_name'])) {
+
 			$result = parent::uploadfile($exts = array('jpg', 'gif', 'png', 'jpeg'), $thumb = true);
 			if (!$result['status']) {
 				$this->error($result['info']);
 			}
-			$oop->doc_dir = $result['info']['file']['savepath'];
-			$oop->doc_img = $result['info']['file']['savename'];
+
+			$oop->doc_dir = $result['info'][0]['savepath'];
+			foreach ($result['info'] as $key => $val) {
+				$arr[$key] = $val["savename"];
+			}
+
+			$oop->doc_img = implode("|", $arr);
 		}
 		//dump(I());
 		//dump($result);exit;
@@ -216,7 +227,7 @@ abstract class CommonController extends BaseController {
 	protected function weblog() {
 		if ($this->authInfo['account']) {
 			$data['log_admin'] = $this->authInfo['account'];
-			$data['log_action'] = CONTROLLER_NAME . "/" . ACTION_NAME;
+			$data['log_action'] = CONTROLLER_NAME . "-" . ACTION_NAME;
 			$data['log_sql'] = M()->_sql();
 			M("weblog")->add($data);
 		}
@@ -233,10 +244,14 @@ abstract class CommonController extends BaseController {
 	// 析构函数
 	public function __destruct() {
 		if (ACTION_NAME != "index" &&
+			ACTION_NAME != "top" &&
+			ACTION_NAME != "left" &&
+			ACTION_NAME != "right" &&
 			ACTION_NAME != "details" &&
 			ACTION_NAME != "add" &&
 			ACTION_NAME != "cleancon" &&
-			ACTION_NAME != "clearCache") {
+			ACTION_NAME != "clearCache" &&
+			ACTION_NAME != "orderhistory_qry") {
 			//parent::__construct(); // 调用父类的构造函数必须显示的使用parent调用父类构造函数
 			$this->weblog(); //调用日志
 		}
