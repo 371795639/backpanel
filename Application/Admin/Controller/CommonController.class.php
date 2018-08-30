@@ -119,9 +119,7 @@ abstract class CommonController extends BaseController {
 	protected function cms_updateHandle() {
 		$oop = M($this->model);
 		$oop->create();
-
-		if (!empty($_FILES['file']['tmp_name'])) {
-
+		if ($_FILES['file']['size'][0] != 0) {
 			$result = parent::uploadfile($exts = array('jpg', 'gif', 'png', 'jpeg'), $thumb = true);
 			if (!$result['status']) {
 				$this->error($result['info']);
@@ -177,10 +175,7 @@ abstract class CommonController extends BaseController {
 	protected function cms_addHandle() {
 		$oop = M($this->model);
 		$oop->create();
-		//dump($_FILES);
-		//exit;
-		if (!empty($_FILES['file']['tmp_name'])) {
-
+		if ($_FILES['file']['size'][0] != 0) {
 			$result = parent::uploadfile($exts = array('jpg', 'gif', 'png', 'jpeg'), $thumb = true);
 			if (!$result['status']) {
 				$this->error($result['info']);
